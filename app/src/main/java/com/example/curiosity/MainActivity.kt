@@ -1,11 +1,10 @@
 package com.example.curiosity
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.FragmentManager
-import kotlin.concurrent.thread
-import com.example.curiosity.LoginFragment as LoginFragment
+import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity() {
 
