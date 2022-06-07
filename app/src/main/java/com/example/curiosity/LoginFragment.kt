@@ -1,5 +1,6 @@
 package com.example.curiosity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,9 +22,9 @@ class LoginFragment : Fragment() {
 
         view.buttonSignUp.setOnClickListener(){
 
-            val transaction = parentFragmentManager.beginTransaction();
-            transaction.replace(R.id.fragmentContainerView,RegisterFragment())
-            transaction.commit()
+            val intent = Intent(activity, CuriosityActivity::class.java)
+            intent.putExtra("keyIdentifier", 1)
+            startActivity(intent)
 
             Log.i("say" , "something")
         }
@@ -32,6 +33,13 @@ class LoginFragment : Fragment() {
         return view
 
 
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+
+
+        super.onCreate(savedInstanceState)
     }
 
 

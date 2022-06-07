@@ -1,4 +1,11 @@
-creare un’applicazione principalmente basata su curiosità che arrivano all’utente sottoforma di notifiche push ogni n ore/minuti. Al momento dell’installazione l’utente effettua l’accesso/si registra e dopo aver effettuato il login sceglie una o più aree
-di interesse da seguire (ad esempio scienza, tecnologia, sport, frasi motivazionali, storia, turismo e tanto altro). Successivamente bisogna scegliere l’intervallo di tempo di recezione delle notifiche. Comunque si potrà in qualsiasi momento seguire o meno altre aree e cambiare la frequenza di arrivo delle notifiche.
-Quando arriva all’utente la notifica push, questa contiene il testo accompagnato alcune volte anche un’immagine, e due pulsanti, “Lo sapevo” e “Non lo sapevo” per chiudere la notifica e avviare nuovamente il timer di n ore. In questo modo l’utente può all’interno dell’applicazione vedere anche la % di curiosità che sapeva/non sapeva.
-Inoltre l’applicazione contiene un’altra funzionalità, un generatore di curiosità che è composto al centro dal testo e in basso due pulsanti, uno verde (“Lo sapevo”) e uno rosso (“Non lo sapevo”) e ogni volta che si preme uno dei pulsanti viene immediatamente generata un’altra curiosità e continua fino all’uscita dell’utente dal generatore.
+creare un’applicazione principalmente basata su curiosità che arrivano all’utente sottoforma di notifiche push ogni n ore/minuti.
+Al momento dell’installazione l’utente effettua l’accesso/si registra e dopo aver effettuato il login sceglie una o più aree
+di interesse da seguire (ad esempio scienza, tecnologia, sport, frasi motivazionali, storia, turismo e tanto altro). 
+Successivamente bisogna scegliere l’intervallo di tempo di recezione delle notifiche. 
+Comunque si potrà in qualsiasi momento seguire o meno altre aree e cambiare la frequenza di arrivo delle notifiche.
+Quando arriva all’utente la notifica push, questa contiene il testo accompagnato alcune volte anche un’immagine, e due pulsanti, “Lo sapevo” e “Non lo sapevo” 
+per chiudere la notifica e avviare nuovamente il timer di n ore. In questo modo l’utente può all’interno dell’applicazione vedere anche la % di curiosità che sapeva/non sapeva.
+
+Inoltre l’applicazione contiene un’altra funzionalità, un generatore di curiosità che è composto al centro dal testo e in basso due pulsanti, 
+uno verde (“Lo sapevo”) e uno rosso (“Non lo sapevo”) e ogni volta che si preme uno dei pulsanti viene immediatamente generata un’altra curiosità
+ e continua fino all’uscita dell’utente dal generatore.

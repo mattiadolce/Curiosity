@@ -1,0 +1,3 @@
+cose da fare:
+
+1) l'activity login e register devono visulizzarsi mutuamente se cliccato il link di testo "registrati" o "sign up"

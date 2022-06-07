@@ -3,18 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
+    tools:context=".CuriosityActivity"
+    android:orientation="vertical">
 
-    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:text="Home"
+        android:textSize="24dp"
+        android:layout_height="wrap_content"
+    />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="com.example.curiosity.LoginFragment"
+        android:id="@+id/container_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+         android:layout_height="match_parent"/>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -24,7 +33,7 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu" >
-    </com.google.android.material.navigation.NavigationView>
 
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
