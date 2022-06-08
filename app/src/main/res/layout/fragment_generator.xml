@@ -9,10 +9,56 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
+        android:textSize="32sp"
         android:layout_gravity="center"
         android:textAlignment="center"
         android:text="Auto generator"/>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:textAppearance="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="Area interesse"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="Fu nel I secolo a.C., con l'estensione della cittadinanza romana agli Italici e i cambiamenti sociali che ne derivarono, che a Roma sorse la preoccupazione per la purezza della lingua. Anche sotto la spinta della speculazione linguistica greca, si avviò un processo di regolarizzazione della lingua. In questi tempi fiorirono letterati come Cicerone, che fu oratore e fil"/>
+
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/curiosity_style"
+            android:text="Lo sapevo" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@drawable/curiosity_style"
+            android:text="Non Lo sapevo" />
+    </LinearLayout>
 
 </LinearLayout>

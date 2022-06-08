@@ -20,13 +20,13 @@ class RegisterFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater!!.inflate(R.layout.fragment_register, container, false)
 
+        //Viene gestito il click sul link di testo: Gia registrato?Accedi.
         view.tvSignUp.setOnClickListener(){
 
+            //Il fragmentContainer viene sostituito con dal RegisterFragment al LoginFragment
             val transaction = parentFragmentManager.beginTransaction();
             transaction.replace(R.id.fragmentContainerView,LoginFragment())
             transaction.commit()
-
-            Log.i("say" , "something")
         }
 
         // Return the fragment view/layout

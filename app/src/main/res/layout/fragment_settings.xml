@@ -3,14 +3,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/settings_layout"
     tools:context=".SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="24sp"
-        android:layout_gravity="center"
-        android:text="Settings" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Settings"
+        android:textAlignment="center"
+        android:textSize="32sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="100dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_aree_interesse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Aree interesse"
+            android:textAlignment="center"
+            android:textSize="32sp" />
+        
+        <ListView
+            android:id="@+id/list_aree_interesse"
+            android:layout_width="match_parent"
+            android:choiceMode="multipleChoice"
+            android:layout_height="200dp"
+            />
+
+        <TextView
+            android:id="@+id/text_freq_notifiche"
+            android:layout_marginTop="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Frequenza notifiche"
+            android:textAlignment="center"
+            android:textSize="32sp" />
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
 
 </FrameLayout>

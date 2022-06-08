@@ -18,41 +18,31 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
         val view = inflater!!.inflate(R.layout.fragment_login, container, false)
 
+        //Viene gestito il click sul link di testo: Non ancora registrato?Registrati.
         view.tvRegister.setOnClickListener(){
 
+            //Il fragmentContainer viene sostituito con dal LoginFragment al RegisterFragment
             val transaction = parentFragmentManager.beginTransaction();
             transaction.replace(R.id.fragmentContainerView,RegisterFragment())
             transaction.commit()
-
-            Log.i("say" , "something")
         }
 
-
+        //Viene gestito il click sul bottone di login
         view.buttonSignUp.setOnClickListener(){
 
+            //Se la login va a buon fine allora aggiungiamo nel backstack la curiosityActivity
             val intent = Intent(activity, CuriosityActivity::class.java)
             intent.putExtra("keyIdentifier", 1)
             startActivity(intent)
-
-            Log.i("say" , "something")
         }
 
         // Return the fragment view/layout
         return view
-
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
-
         super.onCreate(savedInstanceState)
     }
-
-
-
 }
