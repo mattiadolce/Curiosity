@@ -11,8 +11,13 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <item name="android:windowBackground">@drawable/curiosity_style</item>
+        <item name="android:windowNoTitle">true</item>
+
         <!-- Customize your theme here. -->
     </style>
+
     
     <style name="Theme.Curiosity.NoActionBar">
         <item name="windowActionBar">false</item>

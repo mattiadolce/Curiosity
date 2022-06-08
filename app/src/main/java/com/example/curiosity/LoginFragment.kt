@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.view.*
+import kotlinx.android.synthetic.main.fragment_register.view.*
 
 
 class LoginFragment : Fragment() {
@@ -19,6 +20,16 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
 
         val view = inflater!!.inflate(R.layout.fragment_login, container, false)
+
+        view.tvRegister.setOnClickListener(){
+
+            val transaction = parentFragmentManager.beginTransaction();
+            transaction.replace(R.id.fragmentContainerView,RegisterFragment())
+            transaction.commit()
+
+            Log.i("say" , "something")
+        }
+
 
         view.buttonSignUp.setOnClickListener(){
 

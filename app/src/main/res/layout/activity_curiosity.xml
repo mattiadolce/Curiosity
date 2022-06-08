@@ -8,14 +8,6 @@
     tools:context=".CuriosityActivity"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:textAlignment="center"
-        android:text="Home"
-        android:textSize="24dp"
-        android:layout_height="wrap_content"
-    />
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_view"
         android:layout_width="match_parent"

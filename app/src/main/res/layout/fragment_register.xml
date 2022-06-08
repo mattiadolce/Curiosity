@@ -3,15 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/register_layout"
     android:layout_height="match_parent">
-
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/ic_background" />
-
 
     <TextView
         android:id="@+id/textView3"
@@ -52,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/register_layout"
         tools:layout_editor_absoluteX="1dp">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -60,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
-            android:background="@drawable/button_style"
+            android:background="@drawable/curiosity_style"
             android:text="username"
             android:textAlignment="center"
             android:textSize="24dp"
@@ -71,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
-            android:background="@drawable/button_style"
+            android:background="@drawable/curiosity_style"
             android:text="pasword"
             android:textAlignment="center"
             android:textSize="24dp"
@@ -82,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
-            android:background="@drawable/button_style"
+            android:background="@drawable/curiosity_style"
             android:text="email"
             android:textAlignment="center"
             android:textSize="24dp"
@@ -93,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
-            android:background="@drawable/button_style"
+            android:background="@drawable/curiosity_style"
             android:text="cellulare"
             android:textAlignment="center"
             android:textSize="24dp"
@@ -110,10 +103,11 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/tvRegister"
+                android:id="@+id/tvSignUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Already have an account?\nSign up"
+                android:clickable="true"
                 android:textColor="#FFFFFF" />
 
         </LinearLayout>
@@ -125,7 +119,7 @@
             android:layout_height="wrap_content"
 
             android:layout_margin="24dp"
-            android:background="@drawable/button_style"
+            android:background="@drawable/curiosity_style"
             android:text="Register" />
 
     </LinearLayout>
