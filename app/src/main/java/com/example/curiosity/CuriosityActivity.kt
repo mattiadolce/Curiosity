@@ -2,15 +2,13 @@ package com.example.curiosity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_curiosity.view.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 class CuriosityActivity : AppCompatActivity() {
 
@@ -30,6 +28,8 @@ class CuriosityActivity : AppCompatActivity() {
         actionBar.syncState()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
 
         //Gestione casi in seguito a click su menu del navigation drawer
         navView.setNavigationItemSelectedListener(){it->
