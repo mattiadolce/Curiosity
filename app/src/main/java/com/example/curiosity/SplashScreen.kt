@@ -2,15 +2,22 @@ package com.example.curiosity
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 @Suppress("DEPRECATION")
 class SplashScreen : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
+
+        auth = Firebase.auth
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -19,11 +26,16 @@ class SplashScreen : AppCompatActivity() {
 
         // we used the postDelayed(Runnable, time) method
         // to send a message with a delayed time.
-        Handler().postDelayed({
+
+        Thread.sleep(3000) // simula caricamento
+        val user =auth.currentUser
+        if(user == null){
+            //manda a view del login
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish()
-        }, 3000) // 3000 is the delayed time in milliseconds.
-
+        }else{
+            val intent = Intent(this, CuriosityActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

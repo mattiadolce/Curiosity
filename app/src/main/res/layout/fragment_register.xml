@@ -3,8 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:id="@+id/register_layout"
     android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_background" />
+
 
     <TextView
         android:id="@+id/textView3"
@@ -40,38 +47,30 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
+    <TextView
+        android:id="@+id/tv_errorLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ERRORE, login fallito"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/register_layout"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         tools:layout_editor_absoluteX="1dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tv_user_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:background="@drawable/curiosity_style"
-            android:text="username"
-            android:textAlignment="center"
-            android:textSize="24dp"
-            tools:ignore="MissingConstraints" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tv_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:background="@drawable/curiosity_style"
-            android:text="pasword"
-            android:textAlignment="center"
-            android:textSize="24dp"
-            tools:ignore="MissingConstraints" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tv_email"
+            android:id="@+id/tf_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
@@ -82,12 +81,12 @@
             tools:ignore="MissingConstraints" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tv_cellulare"
+            android:id="@+id/tf_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
             android:background="@drawable/curiosity_style"
-            android:text="cellulare"
+            android:text="password"
             android:textAlignment="center"
             android:textSize="24dp"
             tools:ignore="MissingConstraints" />
@@ -103,11 +102,10 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/tvSignUp"
+                android:id="@+id/tvRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Already have an account?\nSign up"
-                android:clickable="true"
                 android:textColor="#FFFFFF" />
 
         </LinearLayout>
