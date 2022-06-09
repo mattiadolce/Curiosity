@@ -27,6 +27,15 @@
         <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/xml/drawer_menu.xml" value="0.12335359675785208" />
         <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/xml/nav_header_main.xml" value="0.12335359675785208" />
         <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/xml/splash_screen.xml" value="0.2" />
+        <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/layout/activity_curiosity.xml" value="0.1796875" />
+        <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
+        <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/layout/activity_splash_screen.xml" value="0.1796875" />
+        <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/layout/fragment_generator.xml" value="0.1796875" />
+        <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/layout/fragment_home.xml" value="0.1796875" />
+        <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/layout/fragment_login.xml" value="0.1796875" />
+        <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/layout/fragment_register.xml" value="0.1796875" />
+        <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/layout/nav_header.xml" value="0.1796875" />
+        <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/menu/nav_menu.xml" value="0.1796875" />
       </map>
     </option>
   </component>
