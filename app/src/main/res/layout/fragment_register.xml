@@ -106,6 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Already have an account?\nSign up"
+                android:focusableInTouchMode="true"
                 android:textColor="#FFFFFF" />
 
         </LinearLayout>
@@ -115,7 +116,7 @@
             style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:focusableInTouchMode="true"
             android:layout_margin="24dp"
             android:background="@drawable/curiosity_style"
             android:text="Register" />
