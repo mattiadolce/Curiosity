@@ -1,5 +1,6 @@
 package com.example.curiosity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -59,8 +60,16 @@ class CuriosityActivity : AppCompatActivity() {
                 //Click sulla pagina logout ( disconnette )
                 R.id.nav_logout -> {
                     auth.signOut()
+
+
+                    //manda a view del login
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+
+                    startActivity(intent)
+
                     finish()
-                    Toast.makeText(applicationContext,"Clicked lOGOUT",  Toast.LENGTH_SHORT).show()
                 }
 
                 //Click sulla pagina settings

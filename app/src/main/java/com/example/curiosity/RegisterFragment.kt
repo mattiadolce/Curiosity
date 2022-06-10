@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -39,10 +40,20 @@ class RegisterFragment : Fragment() {
                 if(it.isSuccessful){
                     Log.i("MainActivity", "Registrazione ok")
                     val intent = Intent(activity, CuriosityActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                     intent.putExtra("keyIdentifier", 1)
                     startActivity(intent)
+
+                    activity?.finish()
+
                 }else{
-                    Log.i("MainActivity", "Registrazione fallita")
+
+                    Log.i("MainActivity", "primo")
+
+                    tv_errorLogin.text = it.exception?.message.toString()
+                    tv_errorLogin.isVisible = true
+
                     //rimane li e mostra messaggio errore
                 }
             }

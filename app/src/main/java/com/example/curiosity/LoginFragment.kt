@@ -12,7 +12,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.fragment_login.tf_password
+import kotlinx.android.synthetic.main.fragment_login.tv_errorLogin
 import kotlinx.android.synthetic.main.fragment_login.view.*
+import kotlinx.android.synthetic.main.fragment_register.*
 
 
 class LoginFragment : Fragment() {
@@ -43,12 +46,19 @@ class LoginFragment : Fragment() {
                 if(it.isSuccessful){
                     //Se la login va a buon fine allora aggiungiamo nel backstack la curiosityActivity
                     val intent = Intent(activity, CuriosityActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+
                     intent.putExtra("keyIdentifier", 1)
                     startActivity(intent)
                     Log.i("MainActivity", "Login ok")
+
+                    activity?.finish()
                 }else{
                     //mostra messaggio d'errore
-                        tv_errorLogin.isVisible = true
+                    tv_errorLogin.text = it.exception?.message.toString()
+                    tv_errorLogin.isVisible = true
+
                     //sposta a view della registrazione
                     Log.i("MainActivity", "Login fallito")
                 }
