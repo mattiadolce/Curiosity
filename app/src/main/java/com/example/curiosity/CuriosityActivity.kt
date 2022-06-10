@@ -9,11 +9,16 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class CuriosityActivity : AppCompatActivity() {
 
     //La actionbar o hamburger icon gestisce il navigation drawer
     lateinit var actionBar : ActionBarDrawerToggle
+
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +34,7 @@ class CuriosityActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        auth = Firebase.auth
 
 
         //Gestione casi in seguito a click su menu del navigation drawer
@@ -52,6 +58,7 @@ class CuriosityActivity : AppCompatActivity() {
 
                 //Click sulla pagina logout ( disconnette )
                 R.id.nav_logout -> {
+                    auth.signOut()
                     finish()
                     Toast.makeText(applicationContext,"Clicked lOGOUT",  Toast.LENGTH_SHORT).show()
                 }
