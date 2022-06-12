@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_settings.*
+import kotlinx.android.synthetic.main.fragment_settings.view.*
 
 class SettingsFragment() : Fragment() {
 
@@ -24,17 +25,15 @@ class SettingsFragment() : Fragment() {
         val view = inflater!!.inflate(R.layout.fragment_settings, container, false)
 
 
-        btn_conferma.setOnClickListener{
+        view.btn_conferma.setOnClickListener{
             AlertDialog.Builder(context)
                 .setTitle("Settings confermate")
                 .setMessage(
-                    "Hai scelto di ricevere notifiche ogni: \n"
+                    "Hai scelto di ricevere notifiche ogni: \n"+list_tempo.selectedItem
                 )
                 .setPositiveButton("Okay"){_,_ ->}
                 .show()
         }
-
-
 
         return view
     }
