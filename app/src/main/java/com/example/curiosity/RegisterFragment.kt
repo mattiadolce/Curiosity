@@ -10,13 +10,20 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class RegisterFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
+
+    val data = ArrayList<User>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +33,8 @@ class RegisterFragment : Fragment() {
         val view = inflater!!.inflate(R.layout.fragment_register, container, false)
 
         auth = Firebase.auth
+
+        CuriosityUsersHelper.readUsersItems(getToDoEventListener())
 
         //Viene gestito il click sul link di testo: Gia registrato?Accedi.
         view.tvRegister.setOnClickListener(){
@@ -40,9 +49,11 @@ class RegisterFragment : Fragment() {
                 if(it.isSuccessful){
                     Log.i("MainActivity", "Registrazione ok")
 
-                    var user = User(tf_email.text.toString(), tf_password.text.toString())
 
-                    CuriosityUsersHelper.setUsersItem(user)
+                    val sdf = SimpleDateFormat("dd-M-yyyy_hh:mm:ss")
+                    var user : User = User(tf_email.text.toString(), tf_password.text.toString() ,sdf.format(Date()))
+
+                    CuriosityUsersHelper.setUsersItem(user.key,user)
 
                     val intent = Intent(activity, CuriosityActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -63,5 +74,37 @@ class RegisterFragment : Fragment() {
 
         // Return the fragment view/layout
         return view
+    }
+
+    private fun getToDoEventListener(): ChildEventListener {
+        val listener = object: ChildEventListener {
+
+            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+                val item = p0.getValue(User::class.java)
+                data.add(item!!)
+
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+                Log.d("MainActivity","ciao")
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+
+            }
+
+
+            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+
+            }
+
+
+        }
+
+        return listener
     }
 }

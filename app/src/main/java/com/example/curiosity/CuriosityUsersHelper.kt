@@ -8,11 +8,12 @@ class CuriosityUsersHelper {
     companion object{
         //"creaimo" il db
         private val db = FirebaseDatabase
-            .getInstance("https://curiosityusers-default-rtdb.europe-west1.firebasedatabase.app/")
-            .getReference("Users")
+            .getInstance("https://curiosityusers2-default-rtdb.firebaseio.com/")
+        private val ref =    db.getReference("users")
+
 
         fun readUsersItems(toDoEventListener: ChildEventListener){
-            db.addChildEventListener(toDoEventListener)
+            ref.addChildEventListener(toDoEventListener)
         }
 
         /*
@@ -21,19 +22,12 @@ class CuriosityUsersHelper {
         }
          */
 
-        fun setUsersItem(user : User){
-            val userId = db.push().key!!
-
-            db.child(userId).setValue(user).addOnSuccessListener {
-                Log.i("DATABASE", "utente inserito")
-            }.addOnFailureListener{
-                Log.i("DATABASE", "ERRORE INSERIMENTO utente ")
-
-            }
+        fun setUsersItem(key: String, user : User){
+            ref.child(key).setValue(user)
         }
 
         fun removeUsersItem(key: String){
-            db.child(key).removeValue()
+            ref.child(key).removeValue()
         }
     }
 }
