@@ -41,6 +41,9 @@ class SettingsFragment() : Fragment() {
         Log.i("auth",auth.currentUser!!.email.toString())
 
         view.btn_conferma.setOnClickListener{
+
+
+
             AlertDialog.Builder(context)
                 .setTitle("Settings confermate")
                 .setMessage(
