@@ -1,5 +1,6 @@
 package com.example.curiosity
 
+import android.util.Log
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.FirebaseDatabase
 
@@ -20,8 +21,15 @@ class CuriosityUsersHelper {
         }
          */
 
-        fun setUsersItem(email :String){
-            db.child(email) //scriviamo come sottonodo di Users un figlio con valore email (key)
+        fun setUsersItem(user : User){
+            val userId = db.push().key!!
+
+            db.child(userId).setValue(user).addOnSuccessListener {
+                Log.i("DATABASE", "utente inserito")
+            }.addOnFailureListener{
+                Log.i("DATABASE", "ERRORE INSERIMENTO utente ")
+
+            }
         }
 
         fun removeUsersItem(key: String){

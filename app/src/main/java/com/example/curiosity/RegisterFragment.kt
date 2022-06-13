@@ -1,6 +1,5 @@
 package com.example.curiosity
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,18 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register.view.*
-import kotlinx.android.synthetic.main.fragment_settings.*
 
 
 class RegisterFragment : Fragment() {
@@ -47,7 +40,9 @@ class RegisterFragment : Fragment() {
                 if(it.isSuccessful){
                     Log.i("MainActivity", "Registrazione ok")
 
-                    CuriosityUsersHelper.setUsersItem(tf_email.text.toString())
+                    var user = User(tf_email.text.toString(), tf_password.text.toString())
+
+                    CuriosityUsersHelper.setUsersItem(user)
 
                     val intent = Intent(activity, CuriosityActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
