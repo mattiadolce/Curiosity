@@ -3,16 +3,17 @@ package com.example.curiosity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register.view.*
@@ -23,6 +24,7 @@ import java.util.*
 class RegisterFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
 
+    var howManyInserted = 0
     val data = ArrayList<User>()
 
     override fun onCreateView(
@@ -51,7 +53,11 @@ class RegisterFragment : Fragment() {
 
 
                     val sdf = SimpleDateFormat("dd-M-yyyy_hh:mm:ss")
-                    var user : User = User(tf_email.text.toString(), tf_password.text.toString() ,sdf.format(Date()))
+
+                    var user : User = User(tf_email.text.toString(), tf_password.text.toString() ,"User" + howManyInserted.toString())
+
+
+
 
                     CuriosityUsersHelper.setUsersItem(user.key,user)
 
@@ -76,31 +82,23 @@ class RegisterFragment : Fragment() {
         return view
     }
 
-    private fun getToDoEventListener(): ChildEventListener {
-        val listener = object: ChildEventListener {
+    private fun getToDoEventListener(): ValueEventListener {
+        val listener = object: ValueEventListener {
 
-            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                val item = p0.getValue(User::class.java)
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val item = snapshot.getValue(User::class.java)
                 data.add(item!!)
 
+                howManyInserted = snapshot.childrenCount.toInt()
+
+                Log.i("Guarda qua invece ",howManyInserted.toString())
             }
 
             override fun onCancelled(p0: DatabaseError) {
 
             }
 
-            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-                Log.d("MainActivity","ciao")
-            }
-
-            override fun onChildRemoved(snapshot: DataSnapshot) {
-
-            }
-
-
-            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-
-            }
 
 
         }
