@@ -4,6 +4,9 @@ import android.util.Log
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
+import java.math.BigInteger
+import java.security.MessageDigest
 
 class CuriosityUsersHelper {
     companion object{
@@ -26,8 +29,25 @@ class CuriosityUsersHelper {
             ref.child(key).setValue(user)
         }
 
+        fun updateUserItem(key: String , nodeValue: String)
+        {
+            Log.i("chiamata","chiamata a updateuseritem")
+            ref.child(key).child("aree_interesse").setValue(nodeValue)
+                .addOnSuccessListener {
+                    Log.i("sETTINGS", "WRite ok")
+                }
+                .addOnFailureListener {
+                    Log.i("sETTINGS", "WRite failed")
+                }
+        }
+
         fun removeUsersItem(key: String){
             ref.child(key).removeValue()
+        }
+
+        fun md5(input:String): String {
+            val md = MessageDigest.getInstance("MD5")
+            return BigInteger(1, md.digest(input.toByteArray())).toString(16).padStart(32, '0')
         }
     }
 }

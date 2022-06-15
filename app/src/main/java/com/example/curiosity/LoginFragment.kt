@@ -10,12 +10,16 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.tf_password
 import kotlinx.android.synthetic.main.fragment_login.tv_errorLogin
 import kotlinx.android.synthetic.main.fragment_login.view.*
 import kotlinx.android.synthetic.main.fragment_register.*
+import java.util.ArrayList
 
 
 class LoginFragment : Fragment() {
@@ -44,10 +48,18 @@ class LoginFragment : Fragment() {
         view.buttonSignUp.setOnClickListener(){
             auth.signInWithEmailAndPassword(tf_user_name.text.toString(), tf_password.text.toString()).addOnCompleteListener{
                 if(it.isSuccessful){
+
+
+
+                    CuriosityUsersHelper.updateUserItem(CuriosityUsersHelper.md5("email4444444@libero.it").toString(),"r,e,r")
+
+
                     //Se la login va a buon fine allora aggiungiamo nel backstack la curiosityActivity
                     val intent = Intent(activity, CuriosityActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+
+
 
                     intent.putExtra("keyIdentifier", 1)
                     startActivity(intent)

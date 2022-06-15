@@ -10,13 +10,14 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register.view.*
+import java.math.BigInteger
+import java.security.MessageDigest
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -54,12 +55,18 @@ class RegisterFragment : Fragment() {
 
                     val sdf = SimpleDateFormat("dd-M-yyyy_hh:mm:ss")
 
-                    var user : User = User(tf_email.text.toString(), tf_password.text.toString() ,"User" + howManyInserted.toString())
+                    var user : User = User(tf_email.text.toString(),
+                                           tf_password.text.toString() ,
+                                  0,
+                                0,
+                                     0,
+                                           "sport,spazio")
+
+                    CuriosityUsersHelper.updateUserItem(CuriosityUsersHelper.md5("email4444444@libero.it").toString(),"1,2,3,2222224,5")
 
 
-
-
-                    CuriosityUsersHelper.setUsersItem(user.key,user)
+                    Log.i("la md5" , CuriosityUsersHelper.md5(tf_email.text.toString()))
+                    Log.i("la md5" , CuriosityUsersHelper.md5(tf_email.text.toString()))
 
                     val intent = Intent(activity, CuriosityActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -81,6 +88,8 @@ class RegisterFragment : Fragment() {
         // Return the fragment view/layout
         return view
     }
+
+
 
     private fun getToDoEventListener(): ValueEventListener {
         val listener = object: ValueEventListener {

@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/drawable/button_style.xml" value="0.11" />
+        <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/drawable/curiosity_style.xml" value="0.196" />
         <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/drawable/ic_background.xml" value="0.1675" />
         <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
         <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1475" />
+        <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/drawable/list_item_aree_interesse.xml" value="0.147" />
         <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/layout/activity_curiosity.xml" value="0.2318840579710145" />
         <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/layout/activity_home.xml" value="0.14" />
         <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/layout/activity_main.xml" value="0.16" />

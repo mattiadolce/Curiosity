@@ -37,7 +37,6 @@ class CuriosityActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
-
         //Gestione casi in seguito a click su menu del navigation drawer
         navView.setNavigationItemSelectedListener(){it->
 
@@ -77,6 +76,8 @@ class CuriosityActivity : AppCompatActivity() {
                     val transaction = supportFragmentManager.beginTransaction();
                     transaction.replace(R.id.container_view,SettingsFragment())
                     transaction.commit()
+
+
 
                 }
             }

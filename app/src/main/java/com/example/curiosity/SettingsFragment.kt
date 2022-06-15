@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.fragment.app.Fragment
+import com.example.curiosity.CuriosityUsersHelper.Companion.readUsersItems
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -17,15 +18,19 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_settings.*
 import kotlinx.android.synthetic.main.fragment_settings.view.*
+import java.util.ArrayList
 
 class SettingsFragment() : Fragment() {
 
     lateinit var listView :  ListView
-    private lateinit var auth: com.google.firebase.auth.FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
-    @SuppressLint("ResourceType")
+    val data = ArrayList<User>()
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +40,8 @@ class SettingsFragment() : Fragment() {
 
         auth = Firebase.auth
 
+        readUsersItems(this.getToDoEventListener())
+
         //1 aprire la connessione a CuriosityUsers
         //2 cercare il nodo contenente lo user con email auth.currentUser!!.email.toString()
         //3 aggiornare la chiave delle aree di interesse con tutti i valori fleggati nella lista
@@ -42,18 +49,53 @@ class SettingsFragment() : Fragment() {
 
         view.btn_conferma.setOnClickListener{
 
+            //devo accedere a curiosityusers2
+            //devo trovare lo user corrispondente
+            //devo aggiornare i campi aree_interesse
 
+            val item = list_aree_interesse.checkedItemPositions
+            
+
+            Log.i("Listview n checked",list_aree_interesse.checkedItemPositions.toString())
+
+            CuriosityUsersHelper.updateUserItem(CuriosityUsersHelper.md5("email4444444@libero.it").toString(),"4444,aa")
+
+
+            //auth.signOut()
 
             AlertDialog.Builder(context)
                 .setTitle("Settings confermate")
                 .setMessage(
-                    "Hai scelto di ricevere notifiche ogni: \n"+list_tempo.selectedItem.toString()
+                    "Hai scelto di ricevere notifiche ogni: \n"
                 )
                 .setPositiveButton("Okay"){_,_ ->}
                 .show()
         }
 
         return view
+    }
+
+    private fun getToDoEventListener(): ValueEventListener {
+        val listener = object: ValueEventListener {
+
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val item = snapshot.getValue(User::class.java)
+                data.add(item!!)
+
+                Log.i("inaspettato","update fa girare datachange")
+
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+
+
+        }
+
+        return listener
     }
 
     @SuppressLint("ResourceType")
@@ -119,4 +161,6 @@ class SettingsFragment() : Fragment() {
         list_tempo.adapter = adapterTempo
 
     }
+
+
 }

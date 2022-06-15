@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "277384947034",
-    "project_id": "curiosity-ca522",
-    "storage_bucket": "curiosity-ca522.appspot.com"
+    "project_number": "54456492138",
+    "firebase_url": "https://curiosityusers2-default-rtdb.firebaseio.com",
+    "project_id": "curiosityusers2",
+    "storage_bucket": "curiosityusers2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:277384947034:android:37dd66d8981524d6bdbf63",
+        "mobilesdk_app_id": "1:54456492138:android:ba338809c3a9204497ea13",
         "android_client_info": {
           "package_name": "com.example.curiosity"
         }
       },
       "oauth_client": [
         {
-          "client_id": "277384947034-0eeikhvf30efujmpchhdbb28c84bf8dk.apps.googleusercontent.com",
+          "client_id": "54456492138-kc71iop7s0ie32bd6jfg6nmms06p7hou.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBBEE0oHlCURDZYn9NfhR1E4HfzLBjaJk4"
+          "current_key": "AIzaSyA2iYntM3FC5l6ImIhXrfzl-tEYqsRRX6k"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "277384947034-0eeikhvf30efujmpchhdbb28c84bf8dk.apps.googleusercontent.com",
+              "client_id": "54456492138-kc71iop7s0ie32bd6jfg6nmms06p7hou.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

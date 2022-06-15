@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.auth.api.Auth
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -11,7 +12,7 @@ import com.google.firebase.ktx.Firebase
 @Suppress("DEPRECATION")
 class SplashScreen : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
+    public lateinit var auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +41,8 @@ class SplashScreen : AppCompatActivity() {
 
             finish();
         }else{
+
+            auth.currentUser!!.reload()
             val intent = Intent(this, CuriosityActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
