@@ -49,21 +49,14 @@ class LoginFragment : Fragment() {
             auth.signInWithEmailAndPassword(tf_user_name.text.toString(), tf_password.text.toString()).addOnCompleteListener{
                 if(it.isSuccessful){
 
-
-
-                    CuriosityUsersHelper.updateUserItem(CuriosityUsersHelper.md5("email4444444@libero.it").toString(),"r,e,r")
-
-
                     //Se la login va a buon fine allora aggiungiamo nel backstack la curiosityActivity
                     val intent = Intent(activity, CuriosityActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
 
-
-
                     intent.putExtra("keyIdentifier", 1)
                     startActivity(intent)
-                    Log.i("MainActivity", "Login ok")
+                    Log.i("LoginFragment", "Login ok")
 
                     activity?.finish()
                 }else{
@@ -72,7 +65,7 @@ class LoginFragment : Fragment() {
                     tv_errorLogin.isVisible = true
 
                     //sposta a view della registrazione
-                    Log.i("MainActivity", "Login fallito")
+                    Log.i("LoginFragment", "Login fallito")
                 }
             }
         }

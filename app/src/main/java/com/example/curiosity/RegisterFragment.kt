@@ -62,7 +62,8 @@ class RegisterFragment : Fragment() {
                                      0,
                                            "sport,spazio")
 
-                    CuriosityUsersHelper.updateUserItem(CuriosityUsersHelper.md5("email4444444@libero.it").toString(),"1,2,3,2222224,5")
+                    val email = auth.currentUser?.email?.replace(".","")
+                    CuriosityUsersHelper.setUsersItem(email.toString(),user)
 
 
                     Log.i("la md5" , CuriosityUsersHelper.md5(tf_email.text.toString()))

@@ -60,7 +60,6 @@ class CuriosityActivity : AppCompatActivity() {
                 R.id.nav_logout -> {
                     auth.signOut()
 
-
                     //manda a view del login
                     val intent = Intent(this, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -76,8 +75,6 @@ class CuriosityActivity : AppCompatActivity() {
                     val transaction = supportFragmentManager.beginTransaction();
                     transaction.replace(R.id.container_view,SettingsFragment())
                     transaction.commit()
-
-
 
                 }
             }
