@@ -24,14 +24,14 @@ class CuriosityUsersHelper {
             refUsers.child(key).setValue(user)
         }
 
-        fun updateUserItem(key: String , nodeValue: String)
+        fun updateUserItem(key: String ,nodeName:String, nodeValue: String)
         {
-            refUsers.child(key).child("aree_interesse").setValue(nodeValue)
+            refUsers.child(key).child(nodeName).setValue(nodeValue)
                 .addOnSuccessListener {
-                    Log.i("sETTINGS", "aree_interesse correttamente aggiornato")
+                    Log.i("sETTINGS", "$nodeName correttamente aggiornato")
                 }
                 .addOnFailureListener {
-                    Log.i("sETTINGS", "aree_interesse non aggiornato")
+                    Log.i("sETTINGS", "$nodeName non aggiornato")
                 }
         }
 
