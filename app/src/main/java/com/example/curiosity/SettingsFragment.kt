@@ -41,6 +41,8 @@ class SettingsFragment() : Fragment() {
     //Dal nome alla posizione
     val myMapConversion = mutableMapOf<String,Int?>()
 
+    val mapConversionTempo = mutableMapOf<String,Int>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -118,6 +120,14 @@ class SettingsFragment() : Fragment() {
                         areeInteresseList = nome.value.toString()
                         Log.i("SettingsFragment","l'utente  sembrea essere interessato a" + areeInteresseList)
                     }
+                    if(nome.key.equals("tempoMinutiNotifica"))
+                    {
+                        notificationTimeSelected = nome.value.toString()
+                        Log.i("SettingsFragment","l'utente vuole ricevere notifiche ogni" + notificationTimeSelected)
+                        list_tempo.setItemChecked(mapConversionTempo[notificationTimeSelected]!!,true)
+                    }
+
+
                 }
 
                 areeInteresseList?.split(", ")?.forEach(){
@@ -141,6 +151,20 @@ class SettingsFragment() : Fragment() {
 
         val listTempoNotifiche = arrayListOf<String>("1 minuto","2 minuti","5 minuti","10 minuti","15 minuti","30 minuti",
                                                      "45 minuti","1 ora","2 ore","5 ore","8 ore","12 ore","24 ore")
+
+        mapConversionTempo.put(listTempoNotifiche[0],0)
+        mapConversionTempo.put(listTempoNotifiche[1],1)
+        mapConversionTempo.put(listTempoNotifiche[2],2)
+        mapConversionTempo.put(listTempoNotifiche[3],3)
+        mapConversionTempo.put(listTempoNotifiche[4],4)
+        mapConversionTempo.put(listTempoNotifiche[5],5)
+        mapConversionTempo.put(listTempoNotifiche[6],6)
+        mapConversionTempo.put(listTempoNotifiche[7],7)
+        mapConversionTempo.put(listTempoNotifiche[8],8)
+        mapConversionTempo.put(listTempoNotifiche[9],9)
+        mapConversionTempo.put(listTempoNotifiche[10],10)
+        mapConversionTempo.put(listTempoNotifiche[11],11)
+        mapConversionTempo.put(listTempoNotifiche[12],12)
 
         val adapterTempo = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_single_choice, listTempoNotifiche)
         list_tempo.adapter = adapterTempo
