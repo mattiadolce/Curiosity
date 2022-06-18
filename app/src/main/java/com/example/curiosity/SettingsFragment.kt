@@ -27,15 +27,9 @@ import kotlinx.android.synthetic.main.fragment_settings.view.*
 
 class SettingsFragment() : Fragment() {
 
-    lateinit var listView :  ListView
     private lateinit var auth: FirebaseAuth
-    val data = ArrayList<User>()
-
     var notificationTimeSelected : String =""
     var areeInteresseSelected : String =""
-
-    data class Avanzato(val pos : Int, val checked : Boolean)
-
     val myMapAreeInteresse = mutableMapOf<String,Boolean>()
 
     //Dal nome alla posizione
@@ -50,38 +44,15 @@ class SettingsFragment() : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater!!.inflate(R.layout.fragment_settings, container, false)
 
-        auth = Firebase.auth
-        readUsersItems(this.getToDoEventListener())
-
-        //1 aprire la connessione a CuriosityUsers
-        //2 cercare il nodo contenente lo user con email auth.currentUser!!.email.toString()
-        //3 aggiornare la chiave delle aree di interesse con tutti i valori fleggati nella lista
-        Log.i("SettingsFragment",auth.currentUser!!.email.toString())
 
         return view
-    }
-
-    private fun getToDoEventListener(): ValueEventListener {
-        val listener = object: ValueEventListener {
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val item = snapshot.getValue(User::class.java)
-                data.add(item!!)
-                Log.i("SettingsFragment","update fa girare datachange")
-            }
-
-            override fun onCancelled(p0: DatabaseError) {
-
-            }
-        }
-
-        return listener
     }
 
     @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        auth = Firebase.auth
         val listAreeInteresse = arrayListOf<String>()
 
         //Lettura dal database firebase - Nodo generale Curiosity
@@ -126,8 +97,6 @@ class SettingsFragment() : Fragment() {
                         Log.i("SettingsFragment","l'utente vuole ricevere notifiche ogni" + notificationTimeSelected)
                         list_tempo.setItemChecked(mapConversionTempo[notificationTimeSelected]!!,true)
                     }
-
-
                 }
 
                 areeInteresseList?.split(", ")?.forEach(){
@@ -136,11 +105,8 @@ class SettingsFragment() : Fragment() {
                     if(it.equals("") || it == null) return
 
                     list_aree_interesse.setItemChecked(myMapConversion[it]!!,true)
-
                     myMapAreeInteresse.put(it,true)
                 }
-
-
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -169,21 +135,14 @@ class SettingsFragment() : Fragment() {
         val adapterTempo = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_single_choice, listTempoNotifiche)
         list_tempo.adapter = adapterTempo
 
-        //todo leggere da firebase i valori spazio->true/false e schiaffarli nella lista
-
         list_tempo.setOnItemClickListener(){
                 myAdapter, myView, myItemInt, mylng ->
             val itemName = list_tempo.getItemAtPosition(myItemInt) as String
 
             notificationTimeSelected = list_tempo.getItemAtPosition(myItemInt) as String
 
-
-
             Log.i("SettingsFragment", "il nome dell item selezionato $itemName ")
         }
-
-
-
 
         list_aree_interesse.setOnItemClickListener(){
                 myAdapter, myView, myItemInt, mylng ->
@@ -209,8 +168,6 @@ class SettingsFragment() : Fragment() {
             }
 
             CuriosityUsersHelper.updateUserItem(email.toString(),"aree_interesse",areeInteresseSelected)
-
-
 
             AlertDialog.Builder(context)
                 .setTitle("Settings confermate")
