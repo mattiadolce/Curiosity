@@ -46,9 +46,11 @@ class HomeFragment : Fragment() {
         //Lettura dal database firebase - Nodo generale Users
         val addValueEventListener2 = CuriosityUsersHelper.refUsers.child(auth.currentUser?.email?.replace(".","").toString()).child("totalAnswer").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                totalAnswer = Integer.parseInt(dataSnapshot.value.toString())
-                Log.i("SettingsFragment","l'utente  totalAnswer" + totalAnswer)
-                textView_risposte_totali.text = totalAnswer.toString() + " risposte totali"
+                if(!dataSnapshot?.value.toString().equals("")) {
+                    totalAnswer = Integer.parseInt(dataSnapshot.value.toString())
+                    Log.i("SettingsFragment", "l'utente  totalAnswer" + totalAnswer)
+                    textView_risposte_totali.text = totalAnswer.toString() + " risposte totali"
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -62,9 +64,12 @@ class HomeFragment : Fragment() {
         //Lettura dal database firebase - Nodo generale Users
         val addValueEventListener3 = CuriosityUsersHelper.refUsers.child(auth.currentUser?.email?.replace(".","").toString()).child("correctAnswer").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                totalCorrectAnswer = Integer.parseInt(dataSnapshot.value.toString())
-                Log.i("SettingsFragment","l'utente  corrette" + totalCorrectAnswer)
-                textView_risposte_corrette.text = totalCorrectAnswer.toString() + " risposte corrette"
+                if(!dataSnapshot?.value.toString().equals(""))
+                {
+                    totalCorrectAnswer = Integer.parseInt(dataSnapshot?.value.toString())
+                    Log.i("SettingsFragment","l'utente  corrette" + totalCorrectAnswer)
+                    textView_risposte_corrette.text = totalCorrectAnswer.toString() + " risposte corrette"
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {

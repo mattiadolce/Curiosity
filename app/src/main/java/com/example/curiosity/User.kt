@@ -3,17 +3,17 @@ package com.example.curiosity
 data class User(
     var userEmail: String? = null,
     var userPsw: String? = null,
-    var totalAnswer: Int = 0,
-    var correctAnswer: Int = 0,
-    var tempoMinutiNotifica: Int = 0,
+    var totalAnswer: String? = null,
+    var correctAnswer: String? = null,
+    var tempoMinutiNotifica: String? = null,
 var aree_interesse : String? = null
 ){
 
     constructor() : this("",
                           "",
-                        0,
-                        0,
-                        0)
+                        "",
+                        "",
+                        "")
 
     override fun toString(): String {
         return userEmail.toString()

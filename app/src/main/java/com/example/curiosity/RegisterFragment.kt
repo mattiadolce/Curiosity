@@ -57,10 +57,10 @@ class RegisterFragment : Fragment() {
 
                     var user : User = User(tf_email.text.toString(),
                                            tf_password.text.toString() ,
-                                  0,
-                                0,
-                                     0,
-                                           "sport,spazio")
+                                  "100",
+                                "3",
+                                     "5 minuti",
+                                           "Sport, Spazio")
 
                     val email = auth.currentUser?.email?.replace(".","")
                     CuriosityUsersHelper.setUsersItem(email.toString(),user)

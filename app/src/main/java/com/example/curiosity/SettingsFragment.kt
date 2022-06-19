@@ -85,10 +85,20 @@ class SettingsFragment() : Fragment() {
 
                 if(it.equals("") || it == null) return
 
-                Log.i("SettingsFragment", myMapNomiPosizioni[it]!!.toString())
-
                 myMapAreeInteresse.put(it, true)
 
+                if(myMapNomiPosizioni.size == 0)
+                {
+                    myMapNomiPosizioni.put("Animali", 0)
+                    myMapNomiPosizioni.put("Cibo", 1)
+                    myMapNomiPosizioni.put("Giochi", 2)
+                    myMapNomiPosizioni.put("HarryPotter", 3)
+                    myMapNomiPosizioni.put("Musica", 4)
+                    myMapNomiPosizioni.put("Scienza", 5)
+                    myMapNomiPosizioni.put("Spazio", 6)
+                    myMapNomiPosizioni.put("Sport", 7)
+                    myMapNomiPosizioni.put("Storia", 8)
+                }
                 list_aree_interesse?.setItemChecked(myMapNomiPosizioni[it]!!,true)
 
             }
@@ -125,15 +135,17 @@ class SettingsFragment() : Fragment() {
 
         Log.i("settingsFragment"," vado a fare push lista aree interesse")
         //Purtroppo l'app deve conoscere in anticipo le aree di interesse
-        myMapNomiPosizioni.put("Animali",0)
-        myMapNomiPosizioni.put("Cibo",1)
-        myMapNomiPosizioni.put("Giochi",2)
-        myMapNomiPosizioni.put("HarryPotter",3)
-        myMapNomiPosizioni.put("Musica",4)
-        myMapNomiPosizioni.put("Scienza",5)
-        myMapNomiPosizioni.put("Spazio",6)
-        myMapNomiPosizioni.put("Sport",7)
-        myMapNomiPosizioni.put("Storia",8)
+        if(myMapNomiPosizioni.size == 0) {
+            myMapNomiPosizioni.put("Animali", 0)
+            myMapNomiPosizioni.put("Cibo", 1)
+            myMapNomiPosizioni.put("Giochi", 2)
+            myMapNomiPosizioni.put("HarryPotter", 3)
+            myMapNomiPosizioni.put("Musica", 4)
+            myMapNomiPosizioni.put("Scienza", 5)
+            myMapNomiPosizioni.put("Spazio", 6)
+            myMapNomiPosizioni.put("Sport", 7)
+            myMapNomiPosizioni.put("Storia", 8)
+        }
 
         val adapterTempo = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_single_choice, listTempoNotifiche)
         list_tempo.adapter = adapterTempo
