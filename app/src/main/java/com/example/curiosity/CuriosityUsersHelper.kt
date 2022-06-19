@@ -28,6 +28,8 @@ class CuriosityUsersHelper {
         {
             refUsers.child(key).child(nodeName).setValue(nodeValue)
                 .addOnSuccessListener {
+
+
                     Log.i("sETTINGS", "$nodeName correttamente aggiornato")
                 }
                 .addOnFailureListener {

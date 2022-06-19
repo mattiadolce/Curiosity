@@ -11,6 +11,7 @@ import android.widget.AdapterView.OnItemClickListener
 import android.widget.AdapterView.VIEW_LOG_TAG
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import com.example.curiosity.CuriosityUsersHelper.Companion.readUsersItems
 import com.google.firebase.auth.FirebaseAuth
@@ -27,13 +28,23 @@ import kotlinx.android.synthetic.main.fragment_settings.view.*
 
 class SettingsFragment() : Fragment() {
 
-    private lateinit var auth: FirebaseAuth
+    var auth: FirebaseAuth = Firebase.auth
     var notificationTimeSelected : String =""
     var areeInteresseSelected : String =""
-    val myMapAreeInteresse = mutableMapOf<String,Boolean>()
+
+    var writedByUserNotification : Boolean = false
+    public  var writedByUserAreeInteresse : Boolean = false
+
+    var areeInteresseFirebaseList : String? = null
+
+
+    val listAreeInteresse = arrayListOf<String>()
 
     //Dal nome alla posizione
-    val myMapConversion = mutableMapOf<String,Int?>()
+    val myMapNomiPosizioni = mutableMapOf<String?,Int?>()
+    //Dal nome al fatto che e selezionata
+    val myMapAreeInteresse = mutableMapOf<String,Boolean>()
+
 
     val mapConversionTempo = mutableMapOf<String,Int>()
 
@@ -48,76 +59,56 @@ class SettingsFragment() : Fragment() {
         return view
     }
 
+
+    //Lettura dal database firebase - Nodo generale Users
+    val addValueEventListener2 = CuriosityUsersHelper.refUsers.child(auth.currentUser?.email?.replace(".","").toString()).child("aree_interesse").addValueEventListener(object : ValueEventListener {
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+            if(writedByUserAreeInteresse){
+                writedByUserAreeInteresse = false
+                return;
+            }
+
+            if(writedByUserNotification){
+                writedByUserNotification = false
+                return;
+            }
+
+
+
+            areeInteresseFirebaseList = dataSnapshot.value.toString()
+
+            Log.i("SettingsFragment","l'utente  sembrea essere interessato a" + areeInteresseFirebaseList)
+
+            areeInteresseFirebaseList?.split(", ")?.forEach(){
+                Log.i("SettingsFragment", it)
+
+                if(it.equals("") || it == null) return
+
+                Log.i("SettingsFragment", myMapNomiPosizioni[it]!!.toString())
+
+                myMapAreeInteresse.put(it, true)
+
+                list_aree_interesse?.setItemChecked(myMapNomiPosizioni[it]!!,true)
+
+            }
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            // Failed to read value
+            Log.w("SettingsFragment", "Failed to read value.", error.toException())
+        }
+    })
+
+
     @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        auth = Firebase.auth
-        val listAreeInteresse = arrayListOf<String>()
-
-        //Lettura dal database firebase - Nodo generale Curiosity
-        val addValueEventListener = CuriosityUsersHelper.refCuriosity.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-                //Aggiunge ogni nodo alla lista
-                for (nome in dataSnapshot.children) {
-                    listAreeInteresse.add(nome.key.toString())
-                    myMapConversion.put(nome.key.toString(),listAreeInteresse.size-1)
-                    val adapter = ArrayAdapter<String>(
-                        requireContext(),
-                        android.R.layout.simple_list_item_checked,
-                        listAreeInteresse
-                    )
-                    list_aree_interesse.adapter = adapter
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Log.w("SettingsFragment", "Failed to read value.", error.toException())
-            }
-        })
-
-        //Lettura dal database firebase - Nodo generale Users
-        val addValueEventListener2 = CuriosityUsersHelper.refUsers.child(auth.currentUser?.email?.replace(".","").toString()).addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-                var areeInteresseList : String? = null
-                //Aggiunge ogni nodo alla lista
-                for (nome in dataSnapshot.children) {
-
-                    if(nome.key.equals("aree_interesse"))
-                    {
-                        areeInteresseList = nome.value.toString()
-                        Log.i("SettingsFragment","l'utente  sembrea essere interessato a" + areeInteresseList)
-                    }
-                    if(nome.key.equals("tempoMinutiNotifica"))
-                    {
-                        notificationTimeSelected = nome.value.toString()
-                        Log.i("SettingsFragment","l'utente vuole ricevere notifiche ogni" + notificationTimeSelected)
-                        list_tempo.setItemChecked(mapConversionTempo[notificationTimeSelected]!!,true)
-                    }
-                }
-
-                areeInteresseList?.split(", ")?.forEach(){
-                    Log.i("SettingsFragment", it)
-
-                    if(it.equals("") || it == null) return
-
-                    list_aree_interesse.setItemChecked(myMapConversion[it]!!,true)
-                    myMapAreeInteresse.put(it,true)
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Log.w("SettingsFragment", "Failed to read value.", error.toException())
-            }
-        })
-
         val listTempoNotifiche = arrayListOf<String>("1 minuto","2 minuti","5 minuti","10 minuti","15 minuti","30 minuti",
-                                                     "45 minuti","1 ora","2 ore","5 ore","8 ore","12 ore","24 ore")
+            "45 minuti","1 ora","2 ore","5 ore","8 ore","12 ore","24 ore")
 
+        Log.i("settingsFragment"," vado a fare push lista tempo")
         mapConversionTempo.put(listTempoNotifiche[0],0)
         mapConversionTempo.put(listTempoNotifiche[1],1)
         mapConversionTempo.put(listTempoNotifiche[2],2)
@@ -132,8 +123,46 @@ class SettingsFragment() : Fragment() {
         mapConversionTempo.put(listTempoNotifiche[11],11)
         mapConversionTempo.put(listTempoNotifiche[12],12)
 
+        Log.i("settingsFragment"," vado a fare push lista aree interesse")
+        //Purtroppo l'app deve conoscere in anticipo le aree di interesse
+        myMapNomiPosizioni.put("Animali",0)
+        myMapNomiPosizioni.put("Cibo",1)
+        myMapNomiPosizioni.put("Giochi",2)
+        myMapNomiPosizioni.put("HarryPotter",3)
+        myMapNomiPosizioni.put("Musica",4)
+        myMapNomiPosizioni.put("Scienza",5)
+        myMapNomiPosizioni.put("Spazio",6)
+        myMapNomiPosizioni.put("Sport",7)
+        myMapNomiPosizioni.put("Storia",8)
+
         val adapterTempo = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_single_choice, listTempoNotifiche)
         list_tempo.adapter = adapterTempo
+
+        //Aggiunge ogni nodo alla lista
+        for (nome in myMapNomiPosizioni.keys) {
+            listAreeInteresse.add(nome.toString())
+            Log.i("settingsFragment","popolo mymapConversion")
+
+            val adapter = ArrayAdapter<String>(
+                requireContext(),
+                android.R.layout.simple_list_item_checked,
+                listAreeInteresse
+            )
+            list_aree_interesse.adapter = adapter
+        }
+
+        areeInteresseFirebaseList?.split(", ")?.forEach(){
+            Log.i("SettingsFragment", it + " sto riempiendo")
+
+            if(it.equals("") || it == null) return
+
+            list_aree_interesse.smoothScrollToPosition(8)
+
+            list_aree_interesse.setItemChecked(myMapNomiPosizioni[it]!!, true)
+
+        }
+
+
 
         list_tempo.setOnItemClickListener(){
                 myAdapter, myView, myItemInt, mylng ->
@@ -155,6 +184,7 @@ class SettingsFragment() : Fragment() {
 
         view.btn_conferma.setOnClickListener{
 
+            writedByUserNotification = true
             val email = auth.currentUser?.email?.replace(".","")
             CuriosityUsersHelper.updateUserItem(email.toString(),"tempoMinutiNotifica",notificationTimeSelected)
 
@@ -167,6 +197,7 @@ class SettingsFragment() : Fragment() {
                 }
             }
 
+
             CuriosityUsersHelper.updateUserItem(email.toString(),"aree_interesse",areeInteresseSelected)
 
             AlertDialog.Builder(context)
@@ -176,5 +207,28 @@ class SettingsFragment() : Fragment() {
                 .setPositiveButton("Okay"){_,_ ->}
                 .show()
         }
+
+
+        //Lettura dal database firebase - Nodo generale Users
+        val addValueEventListener5 = CuriosityUsersHelper.refUsers.child(auth.currentUser?.email?.replace(".","").toString()).child("tempoMinutiNotifica").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                notificationTimeSelected = dataSnapshot.value.toString()
+                Log.i("SettingsFragment","l'utente vuole ricevere notifiche ogni" + notificationTimeSelected)
+                list_tempo?.setItemChecked(mapConversionTempo[notificationTimeSelected]!!,true)
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Failed to read value
+                Log.w("SettingsFragment", "Failed to read value.", error.toException())
+            }
+        })
+
+
+
+
+
+
     }
 }
