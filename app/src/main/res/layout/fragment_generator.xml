@@ -19,6 +19,7 @@
         android:layout_height="100dp"/>
 
     <TextView
+        android:id="@+id/tf_area_interesse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="32sp"
@@ -28,6 +29,7 @@
         android:text="Area interesse"/>
 
     <TextView
+        android:id="@+id/tf_curiosita"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="24sp"

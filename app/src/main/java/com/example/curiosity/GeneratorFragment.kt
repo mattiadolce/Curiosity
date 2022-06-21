@@ -12,7 +12,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_generator.*
 import kotlinx.android.synthetic.main.fragment_settings.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class GeneratorFragment : Fragment() {
     var areeInteresseFirebaseList : String? = null
@@ -25,6 +28,7 @@ class GeneratorFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_generator, container, false)
+
     }
 
 
@@ -34,12 +38,10 @@ class GeneratorFragment : Fragment() {
 
             areeInteresseFirebaseList = dataSnapshot.value.toString()
 
-            Log.i("SettingsFragment","l'utente  sembrea essere interessato a" + areeInteresseFirebaseList)
+            Log.i("SettingsFragment","l'utente  sembra essere interessato a " + areeInteresseFirebaseList)
 
             areeInteresseFirebaseList?.split(", ")?.forEach(){
                 Log.i("SettingsFragment", it)
-
-
 
                 if(it.equals("") || it == null) return
 
@@ -50,6 +52,8 @@ class GeneratorFragment : Fragment() {
                 Log.i("size lista",listaAree?.size.toString())
                 Log.i("primo valore lista",listaAree?.get(0).toString())
             }
+
+
         }
 
         override fun onCancelled(error: DatabaseError) {
