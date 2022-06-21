@@ -1,10 +1,15 @@
 package com.example.curiosity
 
+import android.annotation.SuppressLint
 import android.app.*
+import android.app.Notification.VISIBILITY_PUBLIC
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC as VP1
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -77,15 +82,24 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
+
     private fun createNotificationChannel()
     {
-        val name = "Notif Channel"
-        val desc = "A Description of the Channel"
-        val importance = NotificationManager.IMPORTANCE_HIGH
-        val channel = NotificationChannel(channelID, name, importance)
-        channel.description = desc
-        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            Log.i("entro","entro")
+
+            val name = "Notif Channel"
+            val desc = "A Description of the Channel"
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val channel = NotificationChannel(channelID, name, importance)
+            channel.description = desc
+            channel.setShowBadge(true);
+            channel.setLockscreenVisibility(VP1);
+            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+
     }
 
 }

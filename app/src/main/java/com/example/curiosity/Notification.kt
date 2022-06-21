@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.browser.customtabs.CustomTabsSession
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationCompat.PRIORITY_MAX as PRI_MAX
 
 const val notificationID = 1
 const val channelID = "channel1"
@@ -19,17 +20,18 @@ class Notification : BroadcastReceiver()
     {
         val bigText = NotificationCompat.BigTextStyle()
 
-        var actionIntent : PendingIntent = PendingIntent.getBroadcast(this, 0, PendingIntent.FLAG_UPDATE_CURRENT)
+        //var actionIntent : PendingIntent = PendingIntent.getBroadcast(context, 0, )
 
         val notification = NotificationCompat.Builder(context, channelID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(intent.getStringExtra(titleExtra))
             .setContentText(intent.getStringExtra(messageExtra))
-            .addAction(R.mipmap.ic_launcher, "Sapevo", actionIntent)
-            .addAction(R.mipmap.ic_launcher, "Non sapevo", actionIntent)
             .setStyle(bigText)
+            .setPriority(PRI_MAX)
             .build()
 
+            //.addAction(R.mipmap.ic_launcher, "Sapevo", actionIntent)
+            //    .addAction(R.mipmap.ic_launcher, "Non sapevo", actionIntent)
 
         val  manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.notify(notificationID, notification)

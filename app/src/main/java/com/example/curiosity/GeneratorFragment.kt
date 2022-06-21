@@ -44,8 +44,8 @@ class GeneratorFragment : Fragment() {
                 .toString()
         )
 
-        text_nome_curiosita.text = CuriosityUsersHelper.listaAreeInteresse[rnd2]
-        text_curiosita.text =
+        tf_area_interesse.text = CuriosityUsersHelper.listaAreeInteresse[rnd2]
+        tf_curiosita.text =
             CuriosityUsersHelper.mapCuriosita?.get(CuriosityUsersHelper.listaAreeInteresse[rnd2] + rnds)
                 .toString()
 
@@ -59,8 +59,8 @@ class GeneratorFragment : Fragment() {
                     .toString()
             )
 
-            text_nome_curiosita.text = CuriosityUsersHelper.listaAreeInteresse[rnd2]
-            text_curiosita.text =
+            tf_area_interesse.text = CuriosityUsersHelper.listaAreeInteresse[rnd2]
+            tf_curiosita.text =
                 CuriosityUsersHelper.mapCuriosita?.get(CuriosityUsersHelper.listaAreeInteresse[rnd2] + rnds)
                     .toString()
 
@@ -86,8 +86,8 @@ class GeneratorFragment : Fragment() {
                     .toString()
             )
 
-            text_nome_curiosita.text = CuriosityUsersHelper.listaAreeInteresse[rnd2]
-            text_curiosita.text =
+            tf_area_interesse.text = CuriosityUsersHelper.listaAreeInteresse[rnd2]
+            tf_curiosita.text =
                 CuriosityUsersHelper.mapCuriosita?.get(CuriosityUsersHelper.listaAreeInteresse[rnd2] + rnds)
                     .toString()
 
