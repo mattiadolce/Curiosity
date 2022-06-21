@@ -3,6 +3,7 @@ package com.example.curiosity
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
+import android.text.BoringLayout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -37,7 +38,6 @@ class SettingsFragment() : Fragment() {
 
     var areeInteresseFirebaseList : String? = null
 
-
     val listAreeInteresse = arrayListOf<String>()
 
     //Dal nome alla posizione
@@ -63,18 +63,6 @@ class SettingsFragment() : Fragment() {
     //Lettura dal database firebase - Nodo generale Users
     val addValueEventListener2 = CuriosityUsersHelper.refUsers.child(auth.currentUser?.email?.replace(".","").toString()).child("aree_interesse").addValueEventListener(object : ValueEventListener {
         override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-            if(writedByUserAreeInteresse){
-                writedByUserAreeInteresse = false
-                return;
-            }
-
-            if(writedByUserNotification){
-                writedByUserNotification = false
-                return;
-            }
-
-
 
             areeInteresseFirebaseList = dataSnapshot.value.toString()
 
@@ -192,9 +180,33 @@ class SettingsFragment() : Fragment() {
             Log.i("SettingsFragment", "il nome dell item selezionato $itemName con valore ${ischecked.toString()}")
 
             myMapAreeInteresse.put(itemName,ischecked);
+
+
         }
 
         view.btn_conferma.setOnClickListener{
+
+            var daRiempire : Boolean = true
+            for( values in myMapAreeInteresse.values )
+            {
+                if(values == true)
+                {
+                    daRiempire = false
+                }
+            }
+            if(daRiempire)
+            {
+                for(keys in myMapNomiPosizioni.keys)
+                {
+                    myMapAreeInteresse.put(keys.toString(),true)
+
+                    for(i in 0..8){
+                        list_aree_interesse.setItemChecked(i, true)
+                    }
+                }
+            }
+
+
 
             writedByUserNotification = true
             val email = auth.currentUser?.email?.replace(".","")

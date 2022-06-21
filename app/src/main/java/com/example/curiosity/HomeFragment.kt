@@ -20,9 +20,6 @@ class HomeFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
 
-    var totalCorrectAnswer : Int  = 0
-    var totalAnswer : Int = 0
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,31 +41,33 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //Lettura dal database firebase - Nodo generale Users
-        val addValueEventListener2 = CuriosityUsersHelper.refUsers.child(auth.currentUser?.email?.replace(".","").toString()).child("totalAnswer").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if(!dataSnapshot?.value.toString().equals("")) {
-                    totalAnswer = Integer.parseInt(dataSnapshot.value.toString())
-                    Log.i("SettingsFragment", "l'utente  totalAnswer" + totalAnswer)
-                    textView_risposte_totali.text = totalAnswer.toString() + " risposte totali"
+        val addValueEventListener3 = CuriosityUsersHelper.refUsers.child(auth.currentUser?.email?.replace(".","").toString())
+            .child("correctAnswer").addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if(!dataSnapshot?.value.toString().equals(""))
+                    {
+                        //la fix ad mettere anche dalle altre parti - se non e la sua pagina allora e nullo
+                        if(textView_risposte_corrette!= null) {
+                            textView_risposte_corrette.text = dataSnapshot!!.value.toString() + " risposte corrette"
+                        }
+
+                    }
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Log.w("SettingsFragment", "Failed to read value.", error.toException())
-            }
-        })
-
+                override fun onCancelled(error: DatabaseError) {
+                    // Failed to read value
+                    Log.w("SettingsFragment", "Failed to read value.", error.toException())
+                }
+            })
 
 
         //Lettura dal database firebase - Nodo generale Users
-        val addValueEventListener3 = CuriosityUsersHelper.refUsers.child(auth.currentUser?.email?.replace(".","").toString()).child("correctAnswer").addValueEventListener(object : ValueEventListener {
+        val addValueEventListener2 = CuriosityUsersHelper.refUsers.child(auth.currentUser?.email?.replace(".","").toString()).child("totalAnswer").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if(!dataSnapshot?.value.toString().equals(""))
-                {
-                    totalCorrectAnswer = Integer.parseInt(dataSnapshot?.value.toString())
-                    Log.i("SettingsFragment","l'utente  corrette" + totalCorrectAnswer)
-                    textView_risposte_corrette.text = totalCorrectAnswer.toString() + " risposte corrette"
+                if(!dataSnapshot?.value.toString().equals("")) {
+                    if(textView_risposte_totali!=null) {
+                        textView_risposte_totali.text = dataSnapshot.value.toString() + " risposte totali"
+                    }
                 }
             }
 
@@ -77,9 +76,8 @@ class HomeFragment : Fragment() {
                 Log.w("SettingsFragment", "Failed to read value.", error.toException())
             }
         })
+
     }
-
-
 
 
 

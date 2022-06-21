@@ -28,6 +28,7 @@ class CuriosityActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_curiosity)
 
+
         //Aggiunta del navigation drawer
         val drawerLayout : DrawerLayout = findViewById( R.id.drawer_layout)
         drawerLayout.closeDrawer(GravityCompat.START);

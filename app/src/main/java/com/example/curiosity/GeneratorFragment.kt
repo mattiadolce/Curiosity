@@ -6,13 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.curiosity.CuriosityUsersHelper.Companion.listaAreeInteresse
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_generator.*
 import kotlinx.android.synthetic.main.fragment_settings.*
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.random.Random.Default.nextInt
 
 class GeneratorFragment : Fragment() {
     var areeInteresseFirebaseList : String? = null
@@ -27,40 +32,74 @@ class GeneratorFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_generator, container, false)
     }
 
-
-    //Lettura dal database firebase - Nodo generale Users
-    val addValueEventListener2 = CuriosityUsersHelper.refUsers.child(auth.currentUser?.email?.replace(".","").toString()).child("aree_interesse").addValueEventListener(object : ValueEventListener {
-        override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-            areeInteresseFirebaseList = dataSnapshot.value.toString()
-
-            Log.i("SettingsFragment","l'utente  sembrea essere interessato a" + areeInteresseFirebaseList)
-
-            areeInteresseFirebaseList?.split(", ")?.forEach(){
-                Log.i("SettingsFragment", it)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
 
+        val rnds = (0..9).random()
+        val rnd2 = (0..listaAreeInteresse.size - 1).random()
+        Log.i("qua", CuriosityUsersHelper.listaAreeInteresse[rnd2])
+        Log.i("qua",
+            CuriosityUsersHelper.mapCuriosita?.get(CuriosityUsersHelper.listaAreeInteresse[rnd2] + rnds)
+                .toString()
+        )
 
-                if(it.equals("") || it == null) return
+        text_nome_curiosita.text = CuriosityUsersHelper.listaAreeInteresse[rnd2]
+        text_curiosita.text =
+            CuriosityUsersHelper.mapCuriosita?.get(CuriosityUsersHelper.listaAreeInteresse[rnd2] + rnds)
+                .toString()
 
-                listaAree?.add(it)
 
-                CuriosityUsersHelper.listen(it,it + "2")
+        btn_si.setOnClickListener() {
+            val rnds = (0..9).random()
+            val rnd2 = (0..listaAreeInteresse.size - 1).random()
+            Log.i("qua", CuriosityUsersHelper.listaAreeInteresse[rnd2])
+            Log.i("qua",
+                CuriosityUsersHelper.mapCuriosita?.get(CuriosityUsersHelper.listaAreeInteresse[rnd2] + rnds)
+                    .toString()
+            )
 
-                Log.i("size lista",listaAree?.size.toString())
-                Log.i("primo valore lista",listaAree?.get(0).toString())
-            }
+            text_nome_curiosita.text = CuriosityUsersHelper.listaAreeInteresse[rnd2]
+            text_curiosita.text =
+                CuriosityUsersHelper.mapCuriosita?.get(CuriosityUsersHelper.listaAreeInteresse[rnd2] + rnds)
+                    .toString()
+
+            val email = auth.currentUser?.email?.replace(".","")
+
+            var nTotali = CuriosityUsersHelper.totalAnswer
+            var nCorrette = CuriosityUsersHelper.totalCorrectAnswer
+            nCorrette += 1
+
+            nTotali += 1
+
+            CuriosityUsersHelper.updateUserItem(email.toString(),"correctAnswer",nCorrette.toString())
+            CuriosityUsersHelper.updateUserItem(email.toString(),"totalAnswer",nTotali.toString())
+
         }
 
-        override fun onCancelled(error: DatabaseError) {
-            // Failed to read value
-            Log.w("GeneratorFragment", "Failed to read value.", error.toException())
+        btn_no.setOnClickListener() {
+            val rnds = (0..9).random()
+            val rnd2 = (0..listaAreeInteresse.size - 1).random()
+            Log.i("qua", CuriosityUsersHelper.listaAreeInteresse[rnd2])
+            Log.i("qua",
+                CuriosityUsersHelper.mapCuriosita?.get(CuriosityUsersHelper.listaAreeInteresse[rnd2] + rnds)
+                    .toString()
+            )
+
+            text_nome_curiosita.text = CuriosityUsersHelper.listaAreeInteresse[rnd2]
+            text_curiosita.text =
+                CuriosityUsersHelper.mapCuriosita?.get(CuriosityUsersHelper.listaAreeInteresse[rnd2] + rnds)
+                    .toString()
+
+            var nTotali = CuriosityUsersHelper.totalAnswer
+
+            nTotali += 1
+            val email = auth.currentUser?.email?.replace(".","")
+
+            CuriosityUsersHelper.updateUserItem(email.toString(),"totalAnswer",nTotali.toString())
         }
-    })
 
+        //Lettura dal database firebase - Nodo generale Users
 
-    //Lettura dal database firebase - Nodo generale Users
-
-
-
+    }
 }

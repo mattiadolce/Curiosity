@@ -2,16 +2,23 @@ package com.example.curiosity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_generator.*
 
 @Suppress("DEPRECATION")
 class SplashScreen : AppCompatActivity() {
 
-    public lateinit var auth: FirebaseAuth
+    var areeInteresseFirebaseList : String? = null
+    var auth: FirebaseAuth = Firebase.auth
+    var listaAree : ArrayList<String>? = arrayListOf()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,11 +32,44 @@ class SplashScreen : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
+        //Lettura dal database firebase - Nodo generale Users
+        val addValueEventListener2 = CuriosityUsersHelper.refUsers.child(auth.currentUser?.email?.replace(".","").toString()).child("aree_interesse").addValueEventListener(object :
+            ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                areeInteresseFirebaseList = dataSnapshot.value.toString()
+
+                Log.i("SplashScreen","l'utente  sembrea essere interessato a" + areeInteresseFirebaseList)
+
+                areeInteresseFirebaseList?.split(", ")?.forEach(){
+                    Log.i("SettingsFragment", it)
+
+                    if(it.equals("") || it == null) return
+
+                    for(i in 0..9)
+                    {
+                        Log.i("Ascolto",it+"$i")
+                        CuriosityUsersHelper.listen(it,it+"$i")
+                    }
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Failed to read value
+                Log.w("GeneratorFragment", "Failed to read value.", error.toException())
+            }
+        })
+
         // we used the postDelayed(Runnable, time) method
         // to send a message with a delayed time.
 
-        Thread.sleep(3000) // simula caricamento
+         // simula caricamento
         val user =auth.currentUser
+
+
+
+
         if(user == null){
             //manda a view del login
             val intent = Intent(this, MainActivity::class.java)
@@ -41,6 +81,9 @@ class SplashScreen : AppCompatActivity() {
             finish();
         }else{
             //auth.signOut()
+
+                CuriosityUsersHelper.initialize(auth.currentUser?.email?.replace(".","").toString())
+
 
 
             auth.currentUser!!.reload()
