@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_settings.*
 class GeneratorFragment : Fragment() {
     var areeInteresseFirebaseList : String? = null
     var auth: FirebaseAuth = Firebase.auth
-    var listaAree : ArrayList<String>? = null
+    var listaAree : ArrayList<String>? = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +43,12 @@ class GeneratorFragment : Fragment() {
 
                 if(it.equals("") || it == null) return
 
-                listaAree!!.add(it.toString())
+                listaAree?.add(it)
 
+                CuriosityUsersHelper.listen(it,it + "2")
+
+                Log.i("size lista",listaAree?.size.toString())
+                Log.i("primo valore lista",listaAree?.get(0).toString())
             }
         }
 
@@ -58,20 +62,5 @@ class GeneratorFragment : Fragment() {
     //Lettura dal database firebase - Nodo generale Users
 
 
-    val addValueEventListener = CuriosityUsersHelper.refCuriosity.child(listaAree!!.get(0)).addValueEventListener(object :
-        ValueEventListener {
-        override fun onDataChange(dataSnapshot: DataSnapshot) {
-            Log.i("CHILDREN COUNT", dataSnapshot.childrenCount.toString())
-            Log.i("AAAAAAAAAAA", dataSnapshot.child(listaAree!!.get(0) + 0).getValue().toString())
-            //notificationTimeSelected = dataSnapshot.value.toString()
-            //Log.i("SettingsFragment","l'utente vuole ricevere notifiche ogni" + notificationTimeSelected)
-            //list_tempo?.setItemChecked(mapConversionTempo[notificationTimeSelected]!!,true)
 
-        }
-
-        override fun onCancelled(error: DatabaseError) {
-            // Failed to read value
-            Log.w("SettingsFragment", "Failed to read value.", error.toException())
-        }
-    })
 }

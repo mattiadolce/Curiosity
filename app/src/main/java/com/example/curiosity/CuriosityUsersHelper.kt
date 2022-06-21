@@ -1,9 +1,7 @@
 package com.example.curiosity
 
 import android.util.Log
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import java.math.BigInteger
 import java.security.MessageDigest
@@ -40,6 +38,26 @@ class CuriosityUsersHelper {
                     Log.i("sETTINGS", "$nodeName non aggiornato")
                 }
         }
+
+        fun listen(nodeName : String, nodeFiglio : String)
+        {
+            val addValueEventListener = CuriosityUsersHelper.refCuriosity.child(nodeName).addValueEventListener(object :
+                ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    Log.i("CHILDREN COUNT", dataSnapshot.childrenCount.toString())
+                    Log.i("AAAAAAAAAAA", dataSnapshot.child(nodeFiglio).getValue().toString())
+                    //notificationTimeSelected = dataSnapshot.value.toString()
+                    //Log.i("SettingsFragment","l'utente vuole ricevere notifiche ogni" + notificationTimeSelected)
+                    //list_tempo?.setItemChecked(mapConversionTempo[notificationTimeSelected]!!,true)
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Failed to read value
+                    Log.w("SettingsFragment", "Failed to read value.", error.toException())
+                }
+            })
+        }
+
 
         fun removeUsersItem(key: String){
             refUsers.child(key).removeValue()
