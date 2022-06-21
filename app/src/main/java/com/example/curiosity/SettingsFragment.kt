@@ -228,7 +228,7 @@ class SettingsFragment() : Fragment() {
                 .setTitle("Settings confermate")
                 .setMessage(
                     "Hai scelto di ricevere notifiche ogni: \n" + notificationTimeSelected
-                    +"Su le seguenti aree di interesse: \n"+ areeInteresseSelected)
+                    +"\nSu le seguenti aree di interesse: \n"+ areeInteresseSelected)
                 .setPositiveButton("Okay"){_,_ ->}
                 .show()
         }
