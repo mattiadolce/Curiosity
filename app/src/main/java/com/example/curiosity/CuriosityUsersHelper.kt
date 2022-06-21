@@ -20,6 +20,10 @@ class CuriosityUsersHelper {
             refUsers.addValueEventListener(toDoEventListener)
         }
 
+        fun readCuriosityItems(toDoEventListener: ValueEventListener){
+            refCuriosity.addValueEventListener(toDoEventListener)
+        }
+
         fun setUsersItem(key: String, user : User){
             refUsers.child(key).setValue(user)
         }
