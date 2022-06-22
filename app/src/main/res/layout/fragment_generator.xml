@@ -13,7 +13,7 @@
         android:textSize="32dp"
         android:layout_gravity="center"
         android:textAlignment="center"
-        android:text="Auto generator"/>
+        android:text="Auto generator" />
 
     <Space
         android:layout_width="match_parent"
@@ -23,11 +23,12 @@
         android:id="@+id/tf_area_interesse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:textSize="32sp"
         android:textAppearance="@style/ThemeOverlay.AppCompat.Light"
+        android:textColor="@color/white"
         android:layout_gravity="center"
         android:layout_marginHorizontal="20dp"
-
         android:textAlignment="center"
         android:text="Area interesse"/>
 

@@ -20,10 +20,10 @@
         android:layout_height="wrap_content"
         android:layout_x="165dp"
         android:layout_y="345dp"
-
         android:text="Curiosity"
         android:textSize="48sp"
         android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/space"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/imageView2"

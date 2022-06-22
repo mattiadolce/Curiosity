@@ -13,7 +13,6 @@
         android:background="@drawable/ic_background" />
 
 
-
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="108dp"
@@ -30,6 +29,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingRight="30dp"
         android:text="Curiosity"
         android:textSize="48sp"
         android:textColor="@color/white"
@@ -67,6 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         tools:layout_editor_absoluteX="1dp">
 
@@ -76,12 +77,14 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="36dp"
             android:layout_marginBottom="8dp"
+            android:paddingRight="50dp"
             android:drawableLeft="@drawable/ic_baseline_email_24"
             android:ems="10"
             android:inputType="textEmailAddress"
             android:text="Email"
             android:textSize="24dp"
             android:textColor="@color/white"
+            android:textAlignment="center"
             android:drawablePadding="24dp"
             android:drawableTint="@color/white"
             tools:layout_editor_absoluteX="99dp"
@@ -92,12 +95,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="36dp"
+            android:paddingRight="50dp"
             android:drawableLeft="@drawable/ic_baseline_key_24"
             android:ems="10"
             android:inputType="textPassword"
             android:text="password"
             android:textSize="24dp"
             android:textColor="@color/white"
+            android:textAlignment="center"
             android:drawablePadding="24dp"
             android:drawableTint="@color/white"
             android:layout_marginBottom="16dp"
@@ -134,12 +139,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Already have an account?\nSign up"
             android:clickable="true"
             android:focusableInTouchMode="true"
-            android:textColor="#FFFFFF"
+            android:text="Already have an account?\nSign up (Click here)"
             android:textAlignment="center"
-            android:textSize="16dp"/>
+            android:textColor="#FFFFFF"
+            android:textSize="16dp" />
 
 
         <Button
