@@ -12,6 +12,7 @@ import android.widget.AdapterView.OnItemClickListener
 import android.widget.AdapterView.VIEW_LOG_TAG
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import com.example.curiosity.CuriosityUsersHelper.Companion.readUsersItems
@@ -102,6 +103,9 @@ class SettingsFragment() : Fragment() {
     @SuppressLint("ResourceType")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        (activity as AppCompatActivity).supportActionBar?.title = "Settings"
 
         val listTempoNotifiche = arrayListOf<String>("1 minuto","2 minuti","5 minuti","10 minuti","15 minuti","30 minuti",
             "45 minuti","1 ora","2 ore","5 ore","8 ore","12 ore","24 ore")

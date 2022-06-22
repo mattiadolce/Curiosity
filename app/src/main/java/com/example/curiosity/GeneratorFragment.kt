@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import com.example.curiosity.CuriosityUsersHelper.Companion.listaAreeInteresse
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -35,19 +36,26 @@ class GeneratorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (activity as AppCompatActivity).supportActionBar?.title = "Auto generator"
 
-        val rnds = (0..9).random()
-        val rnd2 = (0..listaAreeInteresse.size - 1).random()
-        Log.i("qua", CuriosityUsersHelper.listaAreeInteresse[rnd2])
-        Log.i("qua",
-            CuriosityUsersHelper.mapCuriosita?.get(CuriosityUsersHelper.listaAreeInteresse[rnd2] + rnds)
-                .toString()
-        )
 
-        tf_area_interesse.text = CuriosityUsersHelper.listaAreeInteresse[rnd2]
-        tf_curiosita.text =
-            CuriosityUsersHelper.mapCuriosita?.get(CuriosityUsersHelper.listaAreeInteresse[rnd2] + rnds)
-                .toString()
+        if(listaAreeInteresse.size != 0)
+        {
+            val rnds = (0..9).random()
+            val rnd2 = (0..listaAreeInteresse.size - 1).random()
+            Log.i("qua", CuriosityUsersHelper.listaAreeInteresse[rnd2])
+            Log.i("qua",
+                CuriosityUsersHelper.mapCuriosita?.get(CuriosityUsersHelper.listaAreeInteresse[rnd2] + rnds)
+                    .toString()
+            )
+
+            tf_area_interesse.text = CuriosityUsersHelper.listaAreeInteresse[rnd2]
+            tf_curiosita.text =
+                CuriosityUsersHelper.mapCuriosita?.get(CuriosityUsersHelper.listaAreeInteresse[rnd2] + rnds)
+                    .toString()
+        }
+
+
 
 
         btn_si.setOnClickListener() {

@@ -6,19 +6,9 @@
     android:id="@+id/settings_layout"
     tools:context=".SettingsFragment">
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Settings"
-        android:layout_marginTop="16dp"
-        android:textAlignment="center"
-        android:textSize="36sp" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="20dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
 

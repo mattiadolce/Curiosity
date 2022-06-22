@@ -46,6 +46,14 @@ class CuriosityUsersHelper {
             if(nodeName == "aree_interesse")
             {
                 listaAreeInteresse.clear()
+
+                nodeValue?.split(", ")?.forEach(){
+                    Log.i("5543w", it)
+
+                    if(it.equals("") || it == null) return
+                    listaAreeInteresse.add(it)
+
+                }
             }
 
             refUsers.child(key).child(nodeName).setValue(nodeValue)
