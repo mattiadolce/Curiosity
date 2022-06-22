@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,24 +9,29 @@
         android:id="@+id/imageView2"
         android:layout_width="108dp"
         android:layout_height="96dp"
-        android:layout_marginBottom="661dp"
         android:layout_x="101dp"
         android:layout_y="328dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.234"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.234"
         app:srcCompat="@drawable/ic_logo" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="164dp"
         android:layout_x="165dp"
         android:layout_y="345dp"
         android:text="Curiosity"
+        android:textColor="@color/white"
         android:textSize="48sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/space"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Space
@@ -38,4 +43,4 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
 
-</AbsoluteLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
