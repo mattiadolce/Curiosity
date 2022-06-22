@@ -52,22 +52,7 @@ class CircolarProgressBar(context: Context, attrs: AttributeSet): View(context, 
         paintFg.color =  typedArray.getColor(R.styleable.CircolarProgressBar_fgColor, Color.BLUE)
         paintFg2.color =  typedArray.getColor(R.styleable.CircolarProgressBar_fg2Color, Color.parseColor("#23AAFF"))
 
-        setOnClickListener{
-            percent=0f
-        }
-        setOnLongClickListener {
-            object : CountDownTimer(11*1000, 1000){
-                override fun onTick(p0: Long) {
-                    percent += 0.1f
-                }
 
-
-                override fun onFinish() {
-                    //non ci serve ma interfaccia lo richede per forza
-                }
-            }.start()
-            true
-        }
     }
     private fun initPaint(size: Float) {
         paintBg.strokeWidth = size*0.2f
