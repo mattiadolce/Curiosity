@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:choiceMode="multipleChoice"
             android:layout_marginHorizontal="24dp"
-            android:layout_height="200dp"/>
+            android:layout_height="150dp"/>
 
             <TextView
                 android:id="@+id/text_freq_notifiche"
@@ -51,13 +51,12 @@
         <ListView
             android:id="@+id/list_tempo"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="170dp"
             android:layout_marginHorizontal="24dp"
             android:choiceMode="singleChoice" />
 
         <Button
             android:id="@+id/btn_conferma"
-            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="36dp"
