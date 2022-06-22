@@ -6,17 +6,6 @@
     android:id="@+id/login_layout"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Curiosity"
-        android:textSize="48sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/space"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -30,6 +19,19 @@
         app:layout_constraintVertical_bias="0.278"
         app:srcCompat="@drawable/ic_logo" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Curiosity"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/space"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Space
         android:id="@+id/space"
         android:layout_width="match_parent"
@@ -39,14 +41,80 @@
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
+    <TextView
+        android:id="@+id/tv_errorLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ERRORE, login fallito"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textSize="36dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tv_errorLogin"
+        app:layout_constraintEnd_toEndOf="@+id/space"
+        app:layout_constraintStart_toStartOf="@+id/space"
+        app:layout_constraintTop_toTopOf="@+id/space" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/login_layout"
         tools:layout_editor_absoluteX="1dp">
 
+        <EditText
+            android:id="@+id/tf_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="36dp"
+            android:layout_marginBottom="8dp"
+            android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:text="Email"
+            android:textSize="24dp"
+            android:textColor="@color/white"
+            android:drawablePadding="24dp"
+            android:drawableTint="@color/white"
+            tools:layout_editor_absoluteX="99dp"
+            tools:layout_editor_absoluteY="460dp" />
+
+        <EditText
+            android:id="@+id/editTextTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="36dp"
+            android:drawableLeft="@drawable/ic_baseline_key_24"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:text="password"
+            android:textSize="24dp"
+            android:textColor="@color/white"
+            android:drawablePadding="24dp"
+            android:drawableTint="@color/white"
+            android:layout_marginBottom="16dp"
+            tools:layout_editor_absoluteX="108dp"
+            tools:layout_editor_absoluteY="502dp" />
+
+
+
+        <!--
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tf_user_name"
             android:layout_width="match_parent"
@@ -69,26 +137,21 @@
             android:textSize="24dp"
             tools:ignore="MissingConstraints" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            -->
 
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
 
             <TextView
                 android:id="@+id/tv_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="Don't have an account?\nRegister"
                 android:clickable="true"
                 android:focusableInTouchMode="true"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textAlignment="center"
+                android:textSize="16dp"/>
 
-        </LinearLayout>
 
         <Button
             android:id="@+id/buttonSignUp"
@@ -96,38 +159,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusableInTouchMode="true"
-            android:layout_margin="24dp"
+            android:layout_margin="36dp"
             android:background="@drawable/curiosity_style"
-            android:text="Sign in" />
+            android:text="Sign in"
+            android:textSize="24dp"/>
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_errorLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ERRORE, login fallito"
-        android:textAlignment="center"
-        android:textColor="#FF0000"
-        android:textSize="24sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/space" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tv_errorLogin"
-        app:layout_constraintEnd_toEndOf="@+id/space"
-        app:layout_constraintStart_toStartOf="@+id/space"
-        app:layout_constraintTop_toTopOf="@+id/space" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

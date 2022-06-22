@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircolarProgressBar">
+        <attr name="bgColor" format="reference|color"/>
+        <attr name="fgColor" format="reference|color"/>
+        <attr name="fg2Color" format="reference|color"/>
+    </declare-styleable>
+</resources>

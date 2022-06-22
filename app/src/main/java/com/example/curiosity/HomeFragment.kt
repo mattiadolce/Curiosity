@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -14,7 +13,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_settings.*
 
 class HomeFragment : Fragment() {
 
@@ -47,8 +45,8 @@ class HomeFragment : Fragment() {
                     if(!dataSnapshot?.value.toString().equals(""))
                     {
                         //la fix ad mettere anche dalle altre parti - se non e la sua pagina allora e nullo
-                        if(textView_risposte_corrette!= null) {
-                            textView_risposte_corrette.text = dataSnapshot!!.value.toString() + " risposte corrette"
+                        if(tv_risposte_corrette!= null) {
+                            tv_risposte_corrette.text = dataSnapshot!!.value.toString() + " risposte corrette"
                         }
 
                     }
@@ -65,8 +63,8 @@ class HomeFragment : Fragment() {
         val addValueEventListener2 = CuriosityUsersHelper.refUsers.child(auth.currentUser?.email?.replace(".","").toString()).child("totalAnswer").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if(!dataSnapshot?.value.toString().equals("")) {
-                    if(textView_risposte_totali!=null) {
-                        textView_risposte_totali.text = dataSnapshot.value.toString() + " risposte totali"
+                    if(tv_risposte_totali!=null) {
+                        tv_risposte_totali.text = dataSnapshot.value.toString() + " risposte totali"
                     }
                 }
             }

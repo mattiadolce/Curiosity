@@ -9,7 +9,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="32sp"
+        android:layout_marginTop="24dp"
+        android:textSize="32dp"
         android:layout_gravity="center"
         android:textAlignment="center"
         android:text="Auto generator"/>
@@ -25,6 +26,8 @@
         android:textSize="32sp"
         android:textAppearance="@style/ThemeOverlay.AppCompat.Light"
         android:layout_gravity="center"
+        android:layout_marginHorizontal="20dp"
+
         android:textAlignment="center"
         android:text="Area interesse"/>
 
@@ -34,33 +37,33 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:layout_gravity="center"
+        android:layout_marginHorizontal="20dp"
         android:textAlignment="center"
-        android:text="Fu nel I secolo a.C., con l'estensione della cittadinanza romana agli Italici e i cambiamenti sociali che ne derivarono, che a Roma sorse la preoccupazione per la purezza della lingua. Anche sotto la spinta della speculazione linguistica greca, si avviò un processo di regolarizzazione della lingua. In questi tempi fiorirono letterati come Cicerone, che fu oratore e fil"/>
-
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:text="Fu nel I secolo a.C., con l'estensione della cittadinanza romana agli Italici e i cambiamenti sociali che ne derivarono, che a Roma sorse la preoccupazione per la purezza della lingua. Anche sotto la spinta della speculazione linguistica greca, si avviò un processo di regolarizzazione della lingua. In questi tempi fiorirono letterati come Cicerone, che fu oratore e filosofo"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_si"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="50dp"
             android:background="@drawable/curiosity_style"
             android:text="Lo sapevo" />
 
         <Button
             android:id="@+id/btn_no"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="50dp"
             android:background="@drawable/curiosity_style"
             android:text="Non Lo sapevo" />
     </LinearLayout>

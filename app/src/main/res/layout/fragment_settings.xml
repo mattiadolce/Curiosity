@@ -12,13 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Settings"
+        android:layout_marginTop="16dp"
         android:textAlignment="center"
-        android:textSize="32sp" />
+        android:textSize="36sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_marginTop="70dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
@@ -34,6 +35,7 @@
             android:id="@+id/list_aree_interesse"
             android:layout_width="match_parent"
             android:choiceMode="multipleChoice"
+            android:layout_marginHorizontal="24dp"
             android:layout_height="200dp"/>
 
             <TextView
@@ -50,6 +52,7 @@
             android:id="@+id/list_tempo"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_marginHorizontal="24dp"
             android:choiceMode="singleChoice" />
 
         <Button
@@ -57,8 +60,9 @@
             android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="24dp"
+            android:layout_margin="36dp"
             android:text="Conferma Settings"
+            android:textSize="24dp"
             style="@style/Widget.AppCompat.Button.Small"
             android:focusableInTouchMode="true"
             android:background="@drawable/curiosity_style"
