@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="100% le sapevi"
+            android:text="100 risposte date"
             android:layout_marginHorizontal="10dp"
             android:textSize="24sp" />
 
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="0% non le sapevi"
+            android:text="20% le sapevi"
             android:layout_marginHorizontal="10dp"
             android:textSize="24sp" />
     </LinearLayout>

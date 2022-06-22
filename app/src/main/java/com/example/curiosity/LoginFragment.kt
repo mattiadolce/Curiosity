@@ -15,7 +15,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_login.*
-import kotlinx.android.synthetic.main.fragment_login.tf_password
 import kotlinx.android.synthetic.main.fragment_login.tv_errorLogin
 import kotlinx.android.synthetic.main.fragment_login.view.*
 import kotlinx.android.synthetic.main.fragment_register.*
@@ -46,7 +45,7 @@ class LoginFragment : Fragment() {
 
         //Viene gestito il click sul bottone di login
         view.buttonSignUp.setOnClickListener(){
-            auth.signInWithEmailAndPassword(tf_user_name.text.toString(), tf_password.text.toString()).addOnCompleteListener{
+            auth.signInWithEmailAndPassword(tf_email_log.text.toString(), tf_password_log.text.toString()).addOnCompleteListener{
                 if(it.isSuccessful){
 
                     //Se la login va a buon fine allora aggiungiamo nel backstack la curiosityActivity

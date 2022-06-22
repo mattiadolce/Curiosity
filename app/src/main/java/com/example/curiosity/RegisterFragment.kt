@@ -48,15 +48,15 @@ class RegisterFragment : Fragment() {
         }
 
         view.buttonRegister.setOnClickListener{
-            auth.createUserWithEmailAndPassword(tf_email.text.toString(), tf_password.text.toString()).addOnCompleteListener{
+            auth.createUserWithEmailAndPassword(tf_email_reg.text.toString(), tf_password_reg.text.toString()).addOnCompleteListener{
                 if(it.isSuccessful){
                     Log.i("MainActivity", "Registrazione ok")
 
 
                     val sdf = SimpleDateFormat("dd-M-yyyy_hh:mm:ss")
 
-                    var user : User = User(tf_email.text.toString(),
-                                           tf_password.text.toString() ,
+                    var user : User = User(tf_email_reg.text.toString(),
+                        tf_password_reg.text.toString() ,
                                   "100",
                                 "3",
                                      "5 minuti",
@@ -66,8 +66,8 @@ class RegisterFragment : Fragment() {
                     CuriosityUsersHelper.setUsersItem(email.toString(),user)
 
 
-                    Log.i("la md5" , CuriosityUsersHelper.md5(tf_email.text.toString()))
-                    Log.i("la md5" , CuriosityUsersHelper.md5(tf_email.text.toString()))
+                    Log.i("la md5" , CuriosityUsersHelper.md5(tf_email_reg.text.toString()))
+                    Log.i("la md5" , CuriosityUsersHelper.md5(tf_email_reg.text.toString()))
 
                     val intent = Intent(activity, CuriosityActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

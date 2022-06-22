@@ -19,34 +19,26 @@
         android:layout_height="96dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.356"
+        app:layout_constraintHorizontal_bias="0.247"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.278"
+        app:layout_constraintVertical_bias="0.246"
         app:srcCompat="@drawable/ic_logo" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingRight="30dp"
         android:text="Curiosity"
-        android:textSize="48sp"
         android:textColor="@color/white"
+        android:textSize="48sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/space"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Space
-        android:id="@+id/space"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginBottom="95dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
 
     <TextView
         android:id="@+id/tv_errorLogin"
@@ -66,48 +58,75 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginBottom="24dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         tools:layout_editor_absoluteX="1dp">
 
-        <EditText
-            android:id="@+id/tf_user_name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="36dp"
-            android:layout_marginBottom="8dp"
-            android:paddingRight="50dp"
-            android:drawableLeft="@drawable/ic_baseline_email_24"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:text="Email"
-            android:textSize="24dp"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:drawablePadding="24dp"
-            android:drawableTint="@color/white"
-            tools:layout_editor_absoluteX="99dp"
-            tools:layout_editor_absoluteY="460dp" />
+            android:layout_marginHorizontal="20dp">
 
-        <EditText
-            android:id="@+id/editTextTextPassword"
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:drawableLeft="@drawable/ic_baseline_email_24"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/white"
+                android:text="Email:"
+                android:textColor="@color/white"
+                android:textSize="24dp" />
+
+            <EditText
+                android:id="@+id/tf_email_reg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_weight="4"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:paddingRight="50dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                tools:layout_editor_absoluteX="99dp"
+                tools:layout_editor_absoluteY="460dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="36dp"
-            android:paddingRight="50dp"
-            android:drawableLeft="@drawable/ic_baseline_key_24"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:text="password"
-            android:textSize="24dp"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:drawablePadding="24dp"
-            android:drawableTint="@color/white"
-            android:layout_marginBottom="16dp"
-            tools:layout_editor_absoluteX="108dp"
-            tools:layout_editor_absoluteY="502dp" />
+            android:layout_marginHorizontal="20dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:drawableLeft="@drawable/ic_baseline_key_24"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/white"
+                android:text="Psw:"
+                android:textColor="@color/white"
+                android:textSize="24dp" />
+
+            <EditText
+                android:id="@+id/tf_password_reg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="4"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:paddingRight="50dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="24dp"
+                tools:layout_editor_absoluteX="108dp"
+                tools:layout_editor_absoluteY="502dp" />
+        </LinearLayout>
 
         <!--
         <com.google.android.material.textfield.TextInputEditText
@@ -141,7 +160,7 @@
             android:layout_gravity="center"
             android:clickable="true"
             android:focusableInTouchMode="true"
-            android:text="Already have an account?\nSign up (Click here)"
+            android:text="Already have an account?\nSign in (Click here)"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="16dp" />
@@ -152,11 +171,11 @@
             style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusableInTouchMode="true"
             android:layout_margin="36dp"
             android:background="@drawable/curiosity_style"
-            android:text="Register"
-            android:textSize="24dp"/>
+            android:focusableInTouchMode="true"
+            android:text="Sign Up"
+            android:textSize="24dp" />
 
     </LinearLayout>
 
@@ -166,9 +185,9 @@
         android:layout_height="wrap_content"
         android:text="Registration"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="36sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/tv_errorLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/space"
