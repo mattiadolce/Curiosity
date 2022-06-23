@@ -1,14 +1,16 @@
 package com.example.curiosity
 
+import android.app.Notification
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import androidx.browser.customtabs.CustomTabsSession
 import androidx.core.app.NotificationCompat
-import androidx.core.content.contentValuesOf
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_generator.*
 import androidx.core.app.NotificationCompat.PRIORITY_MAX as PRI_MAX
 
@@ -19,6 +21,8 @@ var messageExtra = "messageExtra"
 
 class Notification : BroadcastReceiver()
 {
+    var auth: FirebaseAuth = Firebase.auth
+
     override fun onReceive(context: Context, intent: Intent)
     {
         if(CuriosityUsersHelper.listaAreeInteresse.size != 0)
@@ -42,8 +46,38 @@ class Notification : BroadcastReceiver()
 
         //var actionIntent : PendingIntent = PendingIntent.getBroadcast(context, 0, )
 
-        val activityIntent = Intent(context,MainActivity::class.java)
-        val contentIntent = PendingIntent.getActivity(context,0,activityIntent,0)
+
+        val  manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+
+        val activityIntentNonSapevo = Intent(context,CuriosityActivity::class.java).apply {
+
+            extras?.clear()
+
+            Log.i("metto" , "metto in extra non la sapeva")
+            putExtra("non la sapeva","non la sapeva")
+
+            manager.cancel(notificationID)
+
+        }
+
+
+        val activityIntentSapevo = Intent(context,CuriosityActivity::class.java).apply {
+
+            extras?.clear()
+
+            Log.i("metto" , "metto in extra la sapeva")
+            putExtra("la sapeva","la sapeva")
+
+            manager.cancel(notificationID)
+
+        }
+
+
+        val contentIntentSapevo = PendingIntent.getActivity(context,0,activityIntentSapevo,
+            PendingIntent.FLAG_UPDATE_CURRENT)
+        val contentIntentNonSapevo = PendingIntent.getActivity(context,0,activityIntentNonSapevo,PendingIntent.FLAG_UPDATE_CURRENT)
+
 
         val notification = NotificationCompat.Builder(context, channelID)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
@@ -51,8 +85,9 @@ class Notification : BroadcastReceiver()
             .setContentText(messageExtra)
             .setStyle(bigText)
             .setPriority(PRI_MAX)
-            .addAction(R.drawable.ic_logo, "Lo sapevo", contentIntent)
-            .addAction(R.drawable.ic_logo, "Non lo sapevo", contentIntent)
+            .setAutoCancel(true)
+            .addAction(R.drawable.ic_logo, "Lo sapevo", contentIntentSapevo)
+            .addAction(R.drawable.ic_logo, "Non lo sapevo", contentIntentNonSapevo)
 
 
             .build()
@@ -60,8 +95,11 @@ class Notification : BroadcastReceiver()
         //.addAction(R.mipmap.ic_launcher, "Sapevo", actionIntent)
         //    .addAction(R.mipmap.ic_launcher, "Non sapevo", actionIntent)
 
-        val  manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
         manager.notify(notificationID, notification)
+
+
+
     }
 
 }

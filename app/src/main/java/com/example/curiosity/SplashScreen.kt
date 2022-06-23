@@ -89,6 +89,7 @@ class SplashScreen : AppCompatActivity() {
                 CuriosityUsersHelper.initialize(auth.currentUser?.email?.replace(".","").toString())
 
 
+
                 val intent = Intent(this, CuriosityActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK );

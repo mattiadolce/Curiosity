@@ -19,6 +19,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.NotificationCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.curiosity.CuriosityUsersHelper.Companion.initializeCuriosity
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -100,8 +101,43 @@ class CuriosityActivity : AppCompatActivity() {
         transaction.replace(R.id.container_view,HomeFragment())
         transaction.commit()
 
-        createNotificationChannel()
-        scheduleNotification()
+        if(intent.getStringExtra("la sapeva").equals("la sapeva"))
+        {
+
+            Log.i("metto" , "leggo - la sapeva ")
+
+            val email = auth.currentUser?.email?.replace(".","")
+
+            var nTotali = CuriosityUsersHelper.totalAnswer
+            var nCorrette = CuriosityUsersHelper.totalCorrectAnswer
+            nCorrette += 1
+
+            nTotali += 1
+
+            CuriosityUsersHelper.updateUserItem(email.toString(),"correctAnswer",nCorrette.toString())
+            CuriosityUsersHelper.updateUserItem(email.toString(),"totalAnswer",nTotali.toString())
+
+            intent.extras?.clear()
+        }
+        else if(intent.getStringExtra("non la sapeva").equals("non la sapeva"))
+        {
+            Log.i("metto" , "leggo - non la sapeva ")
+
+            val email = auth.currentUser?.email?.replace(".","")
+
+            var nTotali = CuriosityUsersHelper.totalAnswer
+            nTotali += 1
+
+
+
+            CuriosityUsersHelper.updateUserItem(email.toString(),"totalAnswer",nTotali.toString())
+
+            intent.extras?.clear()
+        }
+        else{
+            initializeCuriosity(this)
+        }
+
     }
 
     fun scheduleNotification()
@@ -122,12 +158,18 @@ class CuriosityActivity : AppCompatActivity() {
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val time = System.currentTimeMillis()
 
-        alarmManager.setInexactRepeating(
-            AlarmManager.RTC_WAKEUP,
-            time,
-            1000 * 60,
-            pendingIntent
-        )
+        Log.i("devo schedulare ogni" , CuriosityUsersHelper.tempoMinutiNotifica)
+
+        if(!CuriosityUsersHelper.tempoMinutiNotifica.equals(""))
+        {
+            alarmManager.setInexactRepeating(
+                AlarmManager.RTC_WAKEUP,
+                time,
+                1000 * 60,
+                pendingIntent
+            )
+        }
+
     }
 
 

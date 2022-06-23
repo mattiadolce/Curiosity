@@ -1,7 +1,17 @@
 package com.example.curiosity
 
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.os.Build
 import android.util.Log
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat.getSystemService
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -11,6 +21,9 @@ import java.security.MessageDigest
 
 class CuriosityUsersHelper {
     companion object{
+
+        private lateinit var curiosityActivity : CuriosityActivity
+
         //"creaimo" il db
         val db = FirebaseDatabase
             .getInstance("https://curiosity-ca522-default-rtdb.firebaseio.com/")
@@ -32,6 +45,11 @@ class CuriosityUsersHelper {
 
         fun readUsersItems(toDoEventListener: ValueEventListener){
             refUsers.addValueEventListener(toDoEventListener)
+        }
+
+        fun initializeCuriosity(curiosityActivity1 : CuriosityActivity)
+        {
+            curiosityActivity = curiosityActivity1
         }
 
         fun readUsersAreeInteresse(toDoEventListener: ValueEventListener){
@@ -133,6 +151,7 @@ class CuriosityUsersHelper {
                         if(!dataSnapshot?.value.toString().equals(""))
                         {
                             tempoMinutiNotifica = dataSnapshot?.value.toString()
+                            create_and_schedule()
                             Log.i("aadasdaad","l'utente  tempoMinutiNotifica " + tempoMinutiNotifica)
                         }
                     }
@@ -162,6 +181,13 @@ class CuriosityUsersHelper {
                     Log.w("SettingsFragment", "Failed to read value.", error.toException())
                 }
             })
+        }
+
+        fun create_and_schedule()
+        {
+            Log.i("creoeschedulo","creoeschedulo")
+            curiosityActivity.createNotificationChannel()
+            curiosityActivity.scheduleNotification()
         }
 
         fun getTotali(key: String)
