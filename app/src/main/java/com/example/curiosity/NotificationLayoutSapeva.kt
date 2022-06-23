@@ -1,5 +1,7 @@
 package com.example.curiosity
 
+import android.app.NotificationManager
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,7 +30,13 @@ class NotificationLayoutSapeva : AppCompatActivity() {
         CuriosityUsersHelper.updateUserItem(email.toString(),"correctAnswer",nCorrette.toString())
         CuriosityUsersHelper.updateUserItem(email.toString(),"totalAnswer",nTotali.toString())
 
+
+        val  manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        manager.cancelAll()
+
         finish()
+
 
     }
 }

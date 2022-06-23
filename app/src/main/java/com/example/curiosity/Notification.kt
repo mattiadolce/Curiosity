@@ -68,9 +68,12 @@ class Notification : BroadcastReceiver()
             .setContentText(messageExtra)
             .setStyle(bigText)
             .setPriority(PRI_MAX)
-            .setAutoCancel(true)
+
+            .setContentIntent(PendingIntent.getActivity(context,0,intent,0))
             .addAction(R.drawable.ic_logo, "Lo sapevo", contentIntentSapevo)
             .addAction(R.drawable.ic_logo, "Non Lo sapevo", contentIntentNonSapevo)
+            .setAutoCancel(true)
+
             .build()
 
 
