@@ -78,6 +78,9 @@ class HomeFragment : Fragment() {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if(!dataSnapshot?.value.toString().equals(""))
                     {
+
+                        Log.i("corrette888","agiiorno risposte corrette")
+
                         //la fix ad mettere anche dalle altre parti - se non e la sua pagina allora e nullo
                         if(tv_risposte_corrette!= null) {
                             correctAnswerReaded = true

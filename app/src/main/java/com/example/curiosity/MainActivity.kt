@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.fragmentContainerView,LoginFragment())
 
 
-        createNotificationChannel()
-        scheduleNotification()
+        //createNotificationChannel()
+        //scheduleNotification()
 
         //actionbar.setHomeAsUpIndicator(R.drawable.ic_menu)
 
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
     }
-
+/*
     private fun scheduleNotification()
     {
         val intent = Intent(applicationContext, Notification::class.java)
@@ -100,6 +100,6 @@ class MainActivity : AppCompatActivity() {
             notificationManager.createNotificationChannel(channel)
         }
 
-    }
+    }*/
 
 }

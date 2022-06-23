@@ -24,6 +24,8 @@ import java.util.ArrayList
 class LoginFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
 
+    var datamio : String = "String"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,6 +35,8 @@ class LoginFragment : Fragment() {
         val view = inflater!!.inflate(R.layout.fragment_login, container, false)
 
         auth = Firebase.auth
+
+        CuriosityUsersHelper.readUsersItems(getToDoEventListener())
 
         //Viene gestito il click sul link di testo: Non ancora registrato?Registrati.
         view.tv_register.setOnClickListener(){
@@ -71,6 +75,28 @@ class LoginFragment : Fragment() {
 
         // Return the fragment view/layout
         return view
+    }
+
+    private fun getToDoEventListener(): ValueEventListener {
+        val listener = object: ValueEventListener {
+
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val item = snapshot.value
+                datamio = item.toString()
+                Log.i("datamio",datamio)
+
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+
+
+        }
+
+        return listener
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

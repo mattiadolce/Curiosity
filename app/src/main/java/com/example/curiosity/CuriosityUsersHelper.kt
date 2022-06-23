@@ -23,6 +23,8 @@ class CuriosityUsersHelper {
         var totalCorrectAnswer = 0
         var totalAnswer = 0
 
+        var tempoMinutiNotifica : String = ""
+
         //HarryPotter0 : curiosita_hp 0
         //HarryPotter1 : curiosita_hp 1
         //Sport0       : curiosita_sport 0
@@ -30,6 +32,18 @@ class CuriosityUsersHelper {
 
         fun readUsersItems(toDoEventListener: ValueEventListener){
             refUsers.addValueEventListener(toDoEventListener)
+        }
+
+        fun readUsersAreeInteresse(toDoEventListener: ValueEventListener){
+            refUsers.child("aree_interesse").addValueEventListener(toDoEventListener)
+        }
+
+        fun readUsersNode(toDoEventListener: ValueEventListener, key: String,nodeName : String ){
+            refUsers.child(key).addValueEventListener(toDoEventListener)
+        }
+
+        fun readUsersTotal(toDoEventListener: ValueEventListener){
+            refUsers.child("aree_interesse").addValueEventListener(toDoEventListener)
         }
 
         fun readCuriosityItems(toDoEventListener: ValueEventListener){
@@ -43,7 +57,15 @@ class CuriosityUsersHelper {
         fun updateUserItem(key: String ,nodeName:String, nodeValue: String)
         {
 
-            if(nodeName == "aree_interesse")
+            refUsers.child(key).child(nodeName).setValue(nodeValue)
+                .addOnSuccessListener {
+                    Log.i("sETTINGS", "$nodeName correttamente aggiornato")
+                }
+                .addOnFailureListener {
+                    Log.i("sETTINGS", "$nodeName non aggiornato")
+                }
+
+            if(nodeName.equals("aree_interesse"))
             {
                 listaAreeInteresse.clear()
 
@@ -56,13 +78,7 @@ class CuriosityUsersHelper {
                 }
             }
 
-            refUsers.child(key).child(nodeName).setValue(nodeValue)
-                .addOnSuccessListener {
-                    Log.i("sETTINGS", "$nodeName correttamente aggiornato")
-                }
-                .addOnFailureListener {
-                    Log.i("sETTINGS", "$nodeName non aggiornato")
-                }
+
         }
 
 
@@ -84,6 +100,14 @@ class CuriosityUsersHelper {
                         if(it.equals("") || it == null) return
                         listaAreeInteresse.add(it)
 
+                            if(!it.equals("") && it != null) {
+                                for(i in 0..9)
+                                {
+                                    listen(it,it + "$i")
+                                }
+                            }
+
+
                     }
                 }
 
@@ -98,7 +122,28 @@ class CuriosityUsersHelper {
             getCorrette(key)
             getTotali(key)
             getAreeInteresse(key)
+            getTempoNotifica(key)
         }
+
+        private fun getTempoNotifica(key: String) {
+            //Lettura dal database firebase - Nodo generale Users
+            val addValueEventListener3 = CuriosityUsersHelper.refUsers.child(key)
+                .child("tempoMinutiNotifica").addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        if(!dataSnapshot?.value.toString().equals(""))
+                        {
+                            tempoMinutiNotifica = dataSnapshot?.value.toString()
+                            Log.i("aadasdaad","l'utente  tempoMinutiNotifica " + tempoMinutiNotifica)
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        // Failed to read value
+                        Log.w("SettingsFragment", "Failed to read value.", error.toException())
+                    }
+                })
+        }
+
         fun getCorrette(key: String)
         {
             //Lettura dal database firebase - Nodo generale Users

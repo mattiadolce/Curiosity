@@ -225,8 +225,26 @@ class SettingsFragment() : Fragment() {
                 }
             }
 
+            Log.i(
+                "aggiorno settings",areeInteresseSelected.toString()
+            )
 
             CuriosityUsersHelper.updateUserItem(email.toString(),"aree_interesse",areeInteresseSelected)
+
+            areeInteresseSelected?.split(", ")?.forEach(){
+                Log.i("SettingsFragment", it + " sto riempiendo")
+
+                if(!it.equals("") && it != null) {
+                    list_aree_interesse.smoothScrollToPosition(8)
+
+                    list_aree_interesse.setItemChecked(myMapNomiPosizioni[it]!!, true)
+
+                    for(i in 0..9)
+                    {
+                        CuriosityUsersHelper.listen(it,it + "$i")
+                    }
+                }
+            }
 
             AlertDialog.Builder(context)
                 .setTitle("Settings confermate")
@@ -237,27 +255,11 @@ class SettingsFragment() : Fragment() {
                 .show()
         }
 
-
-        //Lettura dal database firebase - Nodo generale Users
-        val addValueEventListener5 = CuriosityUsersHelper.refUsers.child(auth.currentUser?.email?.replace(".","").toString()).child("tempoMinutiNotifica").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-
-                notificationTimeSelected = dataSnapshot.value.toString()
-                Log.i("SettingsFragment","l'utente vuole ricevere notifiche ogni" + notificationTimeSelected)
-                list_tempo?.setItemChecked(mapConversionTempo[notificationTimeSelected]!!,true)
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                Log.w("SettingsFragment", "Failed to read value.", error.toException())
-            }
-        })
-
-
-
-
-
+        notificationTimeSelected = CuriosityUsersHelper.tempoMinutiNotifica
+        Log.i("SettingsFragment","l'utente vuole ricevere notifiche ogni" + notificationTimeSelected)
+        if(!notificationTimeSelected.equals("")) {
+            list_tempo?.setItemChecked(mapConversionTempo[notificationTimeSelected]!!, true)
+        }
 
     }
 }
