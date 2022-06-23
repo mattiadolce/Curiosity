@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
     }
-/*
+
     private fun scheduleNotification()
     {
         val intent = Intent(applicationContext, Notification::class.java)
@@ -63,23 +63,6 @@ class MainActivity : AppCompatActivity() {
             1000 * 60,
             pendingIntent
         )
-        showAlert(time, title, message)
-    }
-
-    private fun showAlert(time: Long, title: String, message: String)
-    {
-        val date = Date(time)
-        val dateFormat = android.text.format.DateFormat.getLongDateFormat(applicationContext)
-        val timeFormat = android.text.format.DateFormat.getTimeFormat(applicationContext)
-
-        AlertDialog.Builder(this)
-            .setTitle("Notification Scheduled")
-            .setMessage(
-                "Title: " + title +
-                        "\nMessage: " + message +
-                        "\nAt: " + dateFormat.format(date) + " " + timeFormat.format(date))
-            .setPositiveButton("Okay"){_,_ ->}
-            .show()
     }
 
 
@@ -100,6 +83,6 @@ class MainActivity : AppCompatActivity() {
             notificationManager.createNotificationChannel(channel)
         }
 
-    }*/
+    }
 
 }
