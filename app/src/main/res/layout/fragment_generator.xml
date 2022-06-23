@@ -26,7 +26,7 @@
     <TextView
         android:id="@+id/tf_curiosita"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_gravity="center"
