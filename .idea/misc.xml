@@ -13,6 +13,7 @@
         <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/layout/activity_curiosity.xml" value="0.2318840579710145" />
         <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/layout/activity_home.xml" value="0.14" />
         <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/layout/activity_notification_layout.xml" value="0.1816123188405797" />
         <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/layout/activity_splash_screen.xml" value="0.16" />
         <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/layout/another_layout.xml" value="0.18802083333333333" />
         <entry key="..\:/Programming/Git/Curiosity/app/src/main/res/layout/app_bar_main.xml" value="0.12335359675785208" />
@@ -31,8 +32,6 @@
         <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/drawable-xhdpi/custom_progress.xml" value="0.1605" />
         <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1605" />
         <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/drawable/ic_btn_notify.xml" value="0.1605" />
-        <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/drawable/ic_generator.xml" value="0.1" />
-        <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/drawable/ic_logout.xml" value="0.1" />
         <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/layout/activity_curiosity.xml" value="0.1796875" />
         <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/layout/activity_splash_screen.xml" value="0.1796875" />
@@ -43,8 +42,6 @@
         <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/layout/fragment_settings.xml" value="0.1796875" />
         <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/layout/nav_header.xml" value="0.1796875" />
         <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/menu/nav_menu.xml" value="0.3333333333333333" />
-        <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
-        <entry key="..\:/Users/claud/AndroidStudioProjects/Curiosity/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>
     </option>
   </component>

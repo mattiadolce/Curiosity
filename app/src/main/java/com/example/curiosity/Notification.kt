@@ -50,33 +50,16 @@ class Notification : BroadcastReceiver()
         val  manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
 
-        val activityIntentNonSapevo = Intent(context,CuriosityActivity::class.java).apply {
-
-            extras?.clear()
-
-            Log.i("metto" , "metto in extra non la sapeva")
-            putExtra("non la sapeva","non la sapeva")
-
-            manager.cancel(notificationID)
-
+        val activityIntentNonSapevo = Intent(context,NotificationLayout::class.java).apply {
         }
 
-
-        val activityIntentSapevo = Intent(context,CuriosityActivity::class.java).apply {
-
-            extras?.clear()
-
-            Log.i("metto" , "metto in extra la sapeva")
-            putExtra("la sapeva","la sapeva")
-
-            manager.cancel(notificationID)
-
-        }
-
-
-        val contentIntentSapevo = PendingIntent.getActivity(context,0,activityIntentSapevo,
-            PendingIntent.FLAG_UPDATE_CURRENT)
         val contentIntentNonSapevo = PendingIntent.getActivity(context,0,activityIntentNonSapevo,PendingIntent.FLAG_UPDATE_CURRENT)
+
+        val activityIntentSapevo = Intent(context,NotificationLayoutSapeva::class.java).apply {
+        }
+
+        val contentIntentSapevo = PendingIntent.getActivity(context,0,activityIntentSapevo,PendingIntent.FLAG_UPDATE_CURRENT)
+
 
 
         val notification = NotificationCompat.Builder(context, channelID)
@@ -87,10 +70,10 @@ class Notification : BroadcastReceiver()
             .setPriority(PRI_MAX)
             .setAutoCancel(true)
             .addAction(R.drawable.ic_logo, "Lo sapevo", contentIntentSapevo)
-            .addAction(R.drawable.ic_logo, "Non lo sapevo", contentIntentNonSapevo)
-
-
+            .addAction(R.drawable.ic_logo, "Non Lo sapevo", contentIntentNonSapevo)
             .build()
+
+
 
         //.addAction(R.mipmap.ic_launcher, "Sapevo", actionIntent)
         //    .addAction(R.mipmap.ic_launcher, "Non sapevo", actionIntent)

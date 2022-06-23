@@ -104,33 +104,12 @@ class CuriosityActivity : AppCompatActivity() {
         if(intent.getStringExtra("la sapeva").equals("la sapeva"))
         {
 
-            Log.i("metto" , "leggo - la sapeva ")
-
-            val email = auth.currentUser?.email?.replace(".","")
-
-            var nTotali = CuriosityUsersHelper.totalAnswer
-            var nCorrette = CuriosityUsersHelper.totalCorrectAnswer
-            nCorrette += 1
-
-            nTotali += 1
-
-            CuriosityUsersHelper.updateUserItem(email.toString(),"correctAnswer",nCorrette.toString())
-            CuriosityUsersHelper.updateUserItem(email.toString(),"totalAnswer",nTotali.toString())
 
             intent.extras?.clear()
         }
         else if(intent.getStringExtra("non la sapeva").equals("non la sapeva"))
         {
-            Log.i("metto" , "leggo - non la sapeva ")
 
-            val email = auth.currentUser?.email?.replace(".","")
-
-            var nTotali = CuriosityUsersHelper.totalAnswer
-            nTotali += 1
-
-
-
-            CuriosityUsersHelper.updateUserItem(email.toString(),"totalAnswer",nTotali.toString())
 
             intent.extras?.clear()
         }
