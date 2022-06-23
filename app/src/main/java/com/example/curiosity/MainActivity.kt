@@ -23,13 +23,17 @@ class MainActivity : AppCompatActivity() {
         transaction.replace(R.id.fragmentContainerView,LoginFragment())
 
 
-        //createNotificationChannel()
-        //scheduleNotification()
-
         //actionbar.setHomeAsUpIndicator(R.drawable.ic_menu)
 
 
     }
+
+    fun create_and_schedule()
+    {
+        createNotificationChannel()
+        scheduleNotification()
+    }
+
 
     override fun onStart() {
         super.onStart()
@@ -39,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         super.onStop()
     }
 
-    private fun scheduleNotification()
+    fun scheduleNotification()
     {
         val intent = Intent(applicationContext, Notification::class.java)
         val title = "Titolo notifica ricorrente"
@@ -66,7 +70,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun createNotificationChannel()
+    fun createNotificationChannel()
     {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 

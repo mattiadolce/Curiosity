@@ -1,14 +1,22 @@
 package com.example.curiosity
 
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.app.NotificationCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
@@ -86,10 +94,60 @@ class CuriosityActivity : AppCompatActivity() {
             true
         }
 
+
         //Di default il fragment iniziale è quello denonominato Home
         val transaction = supportFragmentManager.beginTransaction();
         transaction.replace(R.id.container_view,HomeFragment())
         transaction.commit()
+
+        createNotificationChannel()
+        scheduleNotification()
+    }
+
+    fun scheduleNotification()
+    {
+        val intent = Intent(applicationContext, Notification::class.java)
+        val title = "Titolo notifica ricorrente"
+        val message = "Messaggio corpo del testo"
+        intent.putExtra(titleExtra, title)
+        intent.putExtra(messageExtra, message)
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            applicationContext,
+            notificationID,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val time = System.currentTimeMillis()
+
+        alarmManager.setInexactRepeating(
+            AlarmManager.RTC_WAKEUP,
+            time,
+            1000 * 60,
+            pendingIntent
+        )
+    }
+
+
+    fun createNotificationChannel()
+    {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            Log.i("entro","entro")
+
+            val name = "Notif Channel"
+            val desc = "A Description of the Channel"
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val channel = NotificationChannel(channelID, name, importance)
+            channel.description = desc
+            channel.setShowBadge(true);
+            channel.setLockscreenVisibility(NotificationCompat.VISIBILITY_PUBLIC);
+            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+
     }
 
     //Click hamburger icon per far uscire il menu o cosiddetto navigation drawer
