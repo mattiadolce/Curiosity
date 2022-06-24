@@ -57,8 +57,8 @@ class RegisterFragment : Fragment() {
 
                     var user : User = User(tf_email_reg.text.toString(),
                         tf_password_reg.text.toString() ,
-                                  "100",
-                                "3",
+                                  "0",
+                                "0",
                                      "5 minuti",
                                            "Sport, Spazio")
 
@@ -68,6 +68,8 @@ class RegisterFragment : Fragment() {
 
                     Log.i("la md5" , CuriosityUsersHelper.md5(tf_email_reg.text.toString()))
                     Log.i("la md5" , CuriosityUsersHelper.md5(tf_email_reg.text.toString()))
+
+                    CuriosityUsersHelper.initialize(email.toString())
 
                     val intent = Intent(activity, CuriosityActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

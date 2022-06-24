@@ -115,6 +115,7 @@ class CuriosityActivity : AppCompatActivity() {
         }
         else{
             initializeCuriosity(this)
+
         }
 
     }
@@ -135,16 +136,35 @@ class CuriosityActivity : AppCompatActivity() {
         )
 
         val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val time = System.currentTimeMillis()
+
 
         Log.i("devo schedulare ogni" , CuriosityUsersHelper.tempoMinutiNotifica)
+
+        val tempo : Long = CuriosityUsersHelper.tempoMinutiNotifica.split(" ").first().toLong()
+        val moltiplicatore = CuriosityUsersHelper.tempoMinutiNotifica.split(" ").last()
+
+        var multiplier : Long = 0
+
+        Log.i("devo schedulare ogni" , tempo.toString())
+        Log.i("devo schedulare ogni" , moltiplicatore)
+
+        if(moltiplicatore.equals("minuti") || moltiplicatore.equals("minuto"))
+        {
+            multiplier = 1000L * 60L
+        }
+        else if(moltiplicatore.equals("ore") || moltiplicatore.equals("ora"))
+        {
+            multiplier = 1000L * 60L * 60L
+        }
+
+        Log.i("scheduling"," scheduling ogni ${tempo * multiplier}")
 
         if(!CuriosityUsersHelper.tempoMinutiNotifica.equals(""))
         {
             alarmManager.setInexactRepeating(
                 AlarmManager.RTC_WAKEUP,
-                time,
-                1000 * 60,
+                System.currentTimeMillis(),
+                (multiplier*tempo) ,
                 pendingIntent
             )
         }
