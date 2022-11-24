@@ -73,6 +73,7 @@ class SplashScreen : AppCompatActivity() {
         val authStateListener = AuthStateListener { firebaseAuth ->
             val user = firebaseAuth.currentUser
             if (user == null) {
+
                 //manda a view del login
                 val intent = Intent(this, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

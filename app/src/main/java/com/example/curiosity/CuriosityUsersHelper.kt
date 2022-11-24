@@ -52,22 +52,6 @@ class CuriosityUsersHelper {
             curiosityActivity = curiosityActivity1
         }
 
-        fun readUsersAreeInteresse(toDoEventListener: ValueEventListener){
-            refUsers.child("aree_interesse").addValueEventListener(toDoEventListener)
-        }
-
-        fun readUsersNode(toDoEventListener: ValueEventListener, key: String,nodeName : String ){
-            refUsers.child(key).addValueEventListener(toDoEventListener)
-        }
-
-        fun readUsersTotal(toDoEventListener: ValueEventListener){
-            refUsers.child("aree_interesse").addValueEventListener(toDoEventListener)
-        }
-
-        fun readCuriosityItems(toDoEventListener: ValueEventListener){
-            refCuriosity.addValueEventListener(toDoEventListener)
-        }
-
         fun setUsersItem(key: String, user : User){
             refUsers.child(key).setValue(user)
         }
@@ -229,11 +213,6 @@ class CuriosityUsersHelper {
                     Log.w("SettingsFragment", "Failed to read value.", error.toException())
                 }
             })
-        }
-
-
-        fun removeUsersItem(key: String){
-            refUsers.child(key).removeValue()
         }
 
         fun md5(input:String): String {

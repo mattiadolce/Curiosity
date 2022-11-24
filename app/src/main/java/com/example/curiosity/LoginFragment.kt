@@ -52,6 +52,8 @@ class LoginFragment : Fragment() {
             auth.signInWithEmailAndPassword(tf_email_log.text.toString(), tf_password_log.text.toString()).addOnCompleteListener{
                 if(it.isSuccessful){
 
+                    CuriosityUsersHelper.initialize(auth.currentUser?.email?.replace(".","").toString())
+
                     //Se la login va a buon fine allora aggiungiamo nel backstack la curiosityActivity
                     val intent = Intent(activity, CuriosityActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
