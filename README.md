@@ -1,4 +1,5 @@
 # Curiosity app
+
 Simple android app for Insubria university project - builded with Kotlin and Firebase
 ## 
 Different categories of curiosity is pre-defined as the curiosity stored in db
